@@ -1,0 +1,145 @@
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:p="http://primefaces.org/ui"
+                template="/resources/templates/default/decorator.xhtml">
+
+	<ui:define name="title">
+		<h:outputText value="#{msgs['manageConclusionProjects.title.create']}" rendered="#{(! manageConclusionProjectsController.readOnly) and (manageConclusionProjectsController.selectedEntity.id == null)}" />
+		<h:outputText value="#{msgs['manageConclusionProjects.title.update']}" rendered="#{(! manageConclusionProjectsController.readOnly) and (manageConclusionProjectsController.selectedEntity.id != null)}" />
+		<h:outputText value="#{msgs['manageConclusionProjects.title.retrieve']}" rendered="#{manageConclusionProjectsController.readOnly}" />
+		<h:outputText value="#{manageConclusionProjectsController.selectedAdvisor.completeName}" />
+	</ui:define>
+
+	<ui:define name="body">
+		<h1>
+			<h:outputText value="#{msgs['manageConclusionProjects.title.create']}" rendered="#{(! manageConclusionProjectsController.readOnly) and (manageConclusionProjectsController.selectedEntity.id == null)}" />
+			<h:outputText value="#{msgs['manageConclusionProjects.title.update']}" rendered="#{(! manageConclusionProjectsController.readOnly) and (manageConclusionProjectsController.selectedEntity.id != null)}" />
+			<h:outputText value="#{msgs['manageConclusionProjects.title.retrieve']}" rendered="#{manageConclusionProjectsController.readOnly}" />
+			<h:outputText value="#{manageConclusionProjectsController.selectedAdvisor.completeName}" />
+		</h1>
+		
+		<div class="crud">
+			<ui:decorate template="/resources/templates/default/form.xhtml">
+				<h:form id="form">
+					<p:hotkey bind="#{msgs['crud.hotkey.focusFirstField']}" handler="findObjectById('form:title').focus();" />
+					<h:panelGroup id="authorField">
+						<ui:decorate template="/resources/templates/default/formfield.xhtml">
+							<ui:param name="fieldName" value="form:author" />
+							<ui:param name="tooltip" value="#{msgs['manageConclusionProjects.form.author.tooltip']}" />
+							<ui:define name="label"><h:outputText value="#{msgs['manageConclusionProjects.form.author']}" /></ui:define>
+							<p:selectOneMenu id="author" value="#{manageConclusionProjectsController.selectedEntity.author}" converter="#{manageResearchersController.researcherConverter}" required="true" disabled="#{manageConclusionProjectsController.readOnly}">
+								<f:selectItem itemLabel="#{msgs['manageConclusionProjects.form.manageResearchers.blankOption']}" itemValue=""/>
+								<f:selectItems value="#{manageResearchersController.selectAuthors}" var="author" itemValue="#{author}" itemLabel="#{author.completeName}"/>
+								<p:ajax event="change" update="authorField advisorField coadvisorField"/>
+							</p:selectOneMenu>
+							<p:commandButton action="#{manageResearchersController.createFromConclusionProject}" value="#{msgs['crud.button.create']} Author" icon="buttonNew" ajax="false" immediate="true" style="top:-8px !important;"/>
+							
+						</ui:decorate>
+					</h:panelGroup>
+					<h:panelGroup id="titleField">
+						<ui:decorate template="/resources/templates/default/formfield.xhtml">
+							<ui:param name="fieldName" value="form:title" />
+							<ui:param name="tooltip" value="#{msgs['manageConclusionProjects.form.title.tooltip']}" />
+							<ui:define name="label"><h:outputText value="#{msgs['manageConclusionProjects.form.title']}" /></ui:define>
+							<p:inputText id="title" value="#{manageConclusionProjectsController.selectedEntity.title}" size="50" required="true" disabled="#{manageConclusionProjectsController.readOnly}">
+								<p:ajax event="blur" update="titleField" />
+							</p:inputText>
+						</ui:decorate>
+					</h:panelGroup>
+					<h:panelGroup id="isAdvisorField">
+						<ui:decorate template="/resources/templates/default/formfield.xhtml">
+							<ui:param name="fieldName" value="form:isAdvisor" />
+							<ui:param name="tooltip" value="#{msgs['manageConclusionProjects.form.isAdvisor.tooltip']}" />
+							<ui:define name="label"><h:outputText value="#{manageConclusionProjectsController.selectedAdvisor.completeName} " /><h:outputText value="#{msgs['manageConclusionProjects.form.isAdvisor']}" /></ui:define>
+							<p:selectBooleanCheckbox id="isAdvisor" value="#{manageConclusionProjectsController.isAdvisor}" disabled="#{manageConclusionProjectsController.readOnly}">
+								<p:ajax event="change" update="isAdvisorField advisorField coadvisorField" />
+							</p:selectBooleanCheckbox>					
+						</ui:decorate>
+					</h:panelGroup>
+					<h:panelGroup id="advisorField">
+						<ui:decorate template="/resources/templates/default/formfield.xhtml">
+							<ui:param name="fieldName" value="form:advisor" />
+							<ui:param name="tooltip" value="#{msgs['manageConclusionProjects.form.advisor.tooltip']}" />
+							<ui:define name="label"><h:outputText value="#{msgs['manageConclusionProjects.form.advisor']}" /></ui:define>
+							<p:selectOneMenu id="advisor" value="#{manageConclusionProjectsController.selectedEntity.advisor}" converter="#{manageResearchersController.researcherConverter}" required="true" disabled="#{manageConclusionProjectsController.readOnly}">
+								<f:selectItem itemLabel="#{msgs['manageConclusionProjects.form.manageResearchers.blankOption']}" itemValue="" itemDisabled="#{manageConclusionProjectsController.isAdvisor}"/>
+								<f:selectItems value="#{manageResearchersController.getSelectAdvisors(manageConclusionProjectsController.isAdvisor, manageConclusionProjectsController.selectedEntity.author, manageConclusionProjectsController.selectedAdvisor)}" var="advisor" itemValue="#{advisor}" itemLabel="#{advisor.completeName}" />
+								<p:ajax event="change" update="advisorField"/>
+							</p:selectOneMenu>	
+							<p:commandButton action="#{manageResearchersController.createFromConclusionProject}" value="#{msgs['crud.button.create']} Advisor" icon="buttonNew" ajax="false" immediate="true" style="top:-8px !important;" rendered="#{not manageConclusionProjectsController.isAdvisor}"/>						
+						</ui:decorate>
+					</h:panelGroup>
+					<h:panelGroup id="coadvisorField">
+						<ui:decorate template="/resources/templates/default/formfield.xhtml">
+							<ui:param name="fieldName" value="form:coadvisor" />
+							<ui:param name="tooltip" value="#{msgs['manageConclusionProjects.form.coadvisor.tooltip']}" />
+							<ui:define name="label"><h:outputText value="#{msgs['manageConclusionProjects.form.coadvisor']}" /></ui:define>
+							<p:selectOneMenu id="coadvisor" value="#{manageConclusionProjectsController.selectedEntity.coadvisor}" converter="#{manageResearchersController.researcherConverter}" required="false" disabled="#{manageConclusionProjectsController.readOnly}">
+								<f:selectItem itemLabel="#{msgs['manageConclusionProjects.form.manageResearchers.blankOption']}" itemValue="" itemDisabled="#{not manageConclusionProjectsController.isAdvisor}"/>
+								<f:selectItems value="#{manageResearchersController.getSelectCoAdvisors(manageConclusionProjectsController.isAdvisor, manageConclusionProjectsController.selectedEntity.author, manageConclusionProjectsController.selectedAdvisor)}" var="coadvisor" itemValue="#{coadvisor}" itemLabel="#{coadvisor.completeName}"/>
+								<p:ajax event="change" update="coadvisorField"/>
+							</p:selectOneMenu>
+							<p:commandButton action="#{manageResearchersController.createFromConclusionProject}" value="#{msgs['crud.button.create']} CoAdvisor" icon="buttonNew"  style="top:-8px !important;" rendered="#{manageConclusionProjectsController.isAdvisor}"/>
+						</ui:decorate>
+					</h:panelGroup>
+					<h:panelGroup id="conclusionProjectTypeField">
+						<ui:decorate template="/resources/templates/default/formfield.xhtml">
+							<ui:param name="fieldName" value="form:conclusionProjectType" />
+							<ui:param name="tooltip" value="#{msgs['manageConclusionProjects.form.conclusionProjectType.tooltip']}" />
+							<ui:define name="label"><h:outputText value="#{msgs['manageConclusionProjects.form.conclusionProjectType']}" /></ui:define>
+							<p:selectOneMenu id="conclusionProjectType" value="#{manageConclusionProjectsController.selectedEntity.conclusionProjectType}" required="true" disabled="#{manageConclusionProjectsController.readOnly}">
+								<f:selectItems value="#{manageResearchersController.conclusionProjectTypes}" var="type" itemValue="#{type}" itemLabel="#{type}"/>
+								<p:ajax event="change" update="advisorField"/>
+							</p:selectOneMenu>
+						</ui:decorate>
+					</h:panelGroup>
+					<h:panelGroup id="inProgressField">
+						<ui:decorate template="/resources/templates/default/formfield.xhtml">
+							<ui:param name="fieldName" value="form:inProgress" />
+							<ui:param name="tooltip" value="#{msgs['manageConclusionProjects.form.inProgress.tooltip']}" />
+							<ui:define name="label"><h:outputText value="#{msgs['manageConclusionProjects.form.inProgress']}" /></ui:define>
+							<p:selectBooleanCheckbox id="inProgress" value="#{manageConclusionProjectsController.selectedEntity.inProgress}" disabled="#{manageConclusionProjectsController.readOnly}">
+								<p:ajax event="change" update="inProgressField issuedField" />
+							</p:selectBooleanCheckbox>
+						</ui:decorate>
+					</h:panelGroup>
+					<h:panelGroup id="issuedField">
+						<ui:decorate template="/resources/templates/default/formfield.xhtml">
+							<ui:param name="fieldName" value="form:issued" />
+							<ui:param name="tooltip" value="#{msgs['manageConclusionProjects.form.issued.tooltip']}" />
+							<ui:define name="label"><h:outputText value="#{msgs['manageConclusionProjects.form.issued']}" /></ui:define>
+							<p:inputText id="issued" value="#{manageConclusionProjectsController.selectedEntity.issued}" size="50" required="false" disabled="#{(manageConclusionProjectsController.selectedEntity.inProgress) or (manageConclusionProjectsController.readOnly)}">
+								<p:ajax event="blur" update="issuedField" />
+							</p:inputText>
+						</ui:decorate>
+					</h:panelGroup>
+					
+					<ui:decorate template="/resources/templates/default/formbutton.xhtml">
+						<h:panelGroup rendered="#{! manageConclusionProjectsController.readOnly}">
+							<p:commandButton action="#{manageConclusionProjectsController.list}" value="#{msgs['crud.button.cancel']}" immediate="true" icon="buttonCancel" />
+							<p:commandButton action="#{manageConclusionProjectsController.save}" value="#{msgs['crud.button.save']}" icon="buttonOk" update=":form :globalMessages" />
+							<p:hotkey bind="#{msgs['crud.hotkey.backToList']}" action="#{manageConclusionProjectsController.list}" immediate="true" />
+							<p:hotkey bind="#{msgs['crud.hotkey.save']}" action="#{manageConclusionProjectsController.save}" update=":form :globalMessages" />
+						</h:panelGroup>
+						<h:panelGroup rendered="#{manageConclusionProjectsController.readOnly}">
+							<p:commandButton action="#{manageConclusionProjectsController.list}" value="#{msgs['crud.button.back']}" immediate="true" icon="buttonBack" />
+							<p:hotkey bind="#{msgs['crud.hotkey.backToList']}" action="#{manageConclusionProjectsController.list}" immediate="true" />
+						</h:panelGroup>
+					</ui:decorate>
+				</h:form>
+			</ui:decorate>
+		</div>
+	</ui:define>
+
+	<ui:define name="help">
+		<h4><h:outputText value="#{msgs['text.hotkeys']}" />:</h4>
+		<ul>
+			<li><b><h:outputText value="#{msgs['crud.hotkey.focusFirstField']}" /></b>: <h:outputText value="#{msgs['crud.help.hotkeys.focusFirstField']}" />;</li>
+			<li><b><h:outputText value="#{msgs['crud.hotkey.backToList']}" /></b>: <h:outputText value="#{msgs['crud.help.hotkeys.backToList']}" />;</li>
+			<li><b><h:outputText value="#{msgs['crud.hotkey.save']}" /></b>: <h:outputText value="#{msgs['crud.help.hotkeys.save']}" />.</li>
+		</ul>
+	</ui:define>
+</ui:composition>

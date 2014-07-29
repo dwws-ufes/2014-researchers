@@ -1,0 +1,149 @@
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:p="http://primefaces.org/ui"
+                template="/resources/templates/default/decorator.xhtml">
+ 
+	<ui:define name="title"><h:outputText value="#{msgs['manageConclusionProjects.title']}" /><h:outputText value="#{manageConclusionProjectsController.selectedAdvisor.completeName}" /></ui:define>
+
+	<ui:define name="body">
+		<h1><h:outputText value="#{msgs['manageConclusionProjects.title']}" /><h:outputText value="#{manageConclusionProjectsController.selectedAdvisor.completeName}" /></h1>
+
+		<div class="crud">
+			<!-- Filter bar: used to filter the listing (displayed when there is at least one filter available). -->
+			<h:form id="filterForm">
+				<h:panelGroup id="filterBar" rendered="#{(not empty manageConclusionProjectsController.filters)}">
+					<div class="crudFilterBar">
+						<h:outputText value="#{msgs['crud.text.filter']} " />
+						<p:selectOneMenu id="filter" required="true" value="#{manageConclusionProjectsController.filterKey}">
+							<f:selectItems value="#{manageConclusionProjectsController.filters}" var="filter" itemLabel="#{filter.label}" itemValue="#{filter.key}" />
+							<f:ajax event="change" execute="@form" listener="#{manageConclusionProjectsController.changeFilter}" render="@form :listingForm :buttonsForm" />
+						</p:selectOneMenu>
+						<h:outputText value=": " />
+						<p:inputText id="filterText" size="20" required="false" value="#{manageConclusionProjectsController.filterParam}" rendered="#{manageConclusionProjectsController.filter.options == null}" />
+						<p:selectOneMenu id="filterSelect" required="false" value="#{manageConclusionProjectsController.filterParam}" rendered="#{manageConclusionProjectsController.filter.options != null}">
+							<f:selectItems value="#{manageConclusionProjectsController.filter.reversedOptionsLabels}" />
+						</p:selectOneMenu>
+						<p:commandLink action="#{manageConclusionProjectsController.filter}" process="@form" update=":listingForm :buttonsForm">
+							<h:graphicImage style="border: 0;" value="/resources/templates/default/icons/button-find.png" title="#{msgs['crud.button.filter']}" />
+						</p:commandLink>
+						<p:hotkey bind="#{msgs['crud.hotkey.filterFocus']}" handler="if (findObjectById('filterForm:filterText') != null) findObjectById('filterForm:filterText').focus(); else findObjectById('filterForm:filterSelect').focus();" />
+					</div>
+				</h:panelGroup>
+			</h:form>
+
+			<!-- The listing form. -->
+			<h:form id="listingForm">
+				<!-- Filter information (displayed when the listing is being filtered. -->
+				<h:panelGroup id="filterInfo" rendered="#{manageConclusionProjectsController.filtering}">
+					<div class="crudFilterInfo">
+						<h:outputFormat value="#{msgs['crud.text.filterInfo']} ">
+							<f:param value="#{manageConclusionProjectsController.filter.label}" />
+							<f:param value="#{manageConclusionProjectsController.filterLabel}" />
+						</h:outputFormat>
+						<p:commandLink action="#{manageConclusionProjectsController.cancelFilter}" process="@form" update="@form :buttonsForm">
+							<h:graphicImage style="border: 0;" value="/resources/templates/default/icons/button-close.png" title="#{msgs['crud.button.cancelFilter']}" />
+						</p:commandLink>
+						<p:hotkey bind="#{msgs['crud.hotkey.clearFilter']}" action="#{manageConclusionProjectsController.cancelFilter}" process="@form" update=":listingForm :buttonsForm" />
+					</div>
+				</h:panelGroup>
+				
+				<h:panelGroup id="listing" styleClass="listing">
+					<p:dataTable
+						widgetVar="listingTable"
+						value="#{manageConclusionProjectsController.lazyEntities}" 
+						var="entity" 
+						rows="#{manageConclusionProjectsController.maxDataTableRowsPerPage}" 
+						rowsPerPageTemplate="#{manageConclusionProjectsController.halfMaxDataTableRowsPerPage},#{manageConclusionProjectsController.maxDataTableRowsPerPage},#{manageConclusionProjectsController.doubleMaxDataTableRowsPerPage}"
+						lazy="true" 
+						paginator="true" 
+						selection="#{manageConclusionProjectsController.selectedEntity}" 
+						selectionMode="single" 
+						paginatorTemplate="{RowsPerPageDropdown} {FirstPageLink} {PreviousPageLink} {CurrentPageReport} {NextPageLink} {LastPageLink}" 
+						paginatorPosition="bottom" 
+						loadingMessage="#{msgs['text.ajax.loading']}" 
+						emptyMessage="#{manageConclusionProjectsController.filtering ? msgs['manageConclusionProjects.text.noEntitiesFiltered'] : msgs['manageConclusionProjects.text.noEntities']}">
+
+						<p:column headerText="#{msgs['manageConclusionProjects.form.author']}">
+							<h:outputText value="#{entity.author.completeName}" />
+						</p:column>
+						<p:column headerText="#{msgs['manageConclusionProjects.form.title']}">
+							<h:outputText value="#{entity.title}" />
+						</p:column>
+						<p:column headerText="#{msgs['manageConclusionProjects.form.advisor']}">
+							<h:outputText value="#{entity.advisor.completeName}" />
+						</p:column>
+						<p:column headerText="#{msgs['manageConclusionProjects.form.coadvisor']}">
+							<h:outputText value="#{entity.coadvisor.completeName}" />
+						</p:column>
+						<p:column headerText="#{msgs['manageConclusionProjects.form.conclusionProjectType']}">
+							<h:outputText value="#{entity.conclusionProjectType.toString()}" />
+						</p:column>
+						<p:column headerText="#{msgs['manageConclusionProjects.form.issued']}">
+							<h:outputText value="In Progress" rendered="#{entity.inProgress}"/>
+							<h:outputText value="#{entity.issued}" rendered="#{not entity.inProgress}"/>
+						</p:column>
+						
+						<p:ajax event="rowSelect" update=":buttonsForm" />
+					</p:dataTable>
+					<p:hotkey bind="ctrl+left" handler="goToFirstPage(listingTable);" />
+					<p:hotkey bind="left" handler="goToPreviousPage(listingTable);" />
+					<p:hotkey bind="right" handler="goToNextPage(listingTable);" />
+					<p:hotkey bind="ctrl+right" handler="goToLastPage(listingTable);" />
+				</h:panelGroup>
+			</h:form>
+
+			<!-- Buttons shown below the listing. -->
+			<h:form id="buttonsForm">
+				<div class="crudButtons">
+					<p:commandButton action="#{manageConclusionProjectsController.create}" value="#{msgs['crud.button.create']}" icon="buttonNew" />
+					<p:commandButton action="#{manageConclusionProjectsController.retrieve}" value="#{msgs['crud.button.retrieve']}" icon="buttonView" disabled="#{manageConclusionProjectsController.selectedEntity == null}" />
+					<p:commandButton action="#{manageConclusionProjectsController.update}" value="#{msgs['crud.button.update']}" icon="buttonEdit" disabled="#{manageConclusionProjectsController.selectedEntity == null}" />
+					<p:commandButton action="#{manageConclusionProjectsController.trash}" value="#{msgs['crud.button.delete']}" icon="buttonTrash" disabled="#{manageConclusionProjectsController.selectedEntity == null}" process="@this" update=":trashForm" />
+					<p:hotkey bind="#{msgs['crud.hotkey.create']}" action="#{manageConclusionProjectsController.create}" />
+					<p:hotkey bind="#{msgs['crud.hotkey.retrieve']}" action="#{manageConclusionProjectsController.retrieve}" rendered="#{manageConclusionProjectsController.selectedEntity != null}" />
+					<p:hotkey bind="#{msgs['crud.hotkey.update']}" action="#{manageConclusionProjectsController.update}" rendered="#{manageConclusionProjectsController.selectedEntity != null}" />
+					<p:hotkey bind="#{msgs['crud.hotkey.delete']}" action="#{manageConclusionProjectsController.trash}" rendered="#{manageConclusionProjectsController.selectedEntity != null}" process="@this" update=":trashForm" />
+					<p:button href="../resources/owl/#{manageConclusionProjectsController.selectedAdvisor.completeName}.zip" value="Save Supervisions as OWL" target="_blank" icon="buttonOwl" rendered="#{not empty manageConclusionProjectsController.lazyEntities}"/>
+					<p:commandButton action="#{manageResearchersController.list}" value="#{msgs['crud.button.back']} to Researchers" immediate="true" icon="buttonBack" />
+					<p:hotkey bind="#{msgs['crud.hotkey.backToList']}" action="#{manageConclusionProjectsController.list}" immediate="true" />
+					
+				</div>
+			</h:form>
+
+			<!-- The trash panel: shows entities that have been selected for deletion. -->
+			<h:form id="trashForm">
+				<p:panel id="trashPanel" styleClass="trashPanel" header="#{msgs['crud.text.trashHeader']}" toggleable="true" rendered="#{not empty manageConclusionProjectsController.trashCan}">
+					<p:dataList value="#{manageConclusionProjectsController.trashCan}" var="entity" type="unordered">
+						#{entity.title}
+					</p:dataList>
+					<div class="nemoUtilsFormInternalButton">
+						<p:commandButton action="#{manageConclusionProjectsController.cancelDeletion}" value="#{msgs['crud.button.cancelDeletion']}" icon="buttonCancel" update=":trashForm :buttonsForm :listingForm" />
+						<p:commandButton action="#{manageConclusionProjectsController.delete}" value="#{msgs['crud.button.confirmDeletion']}" icon="buttonOk" />
+						<p:hotkey bind="#{msgs['crud.hotkey.cancelDeletion']}" action="#{manageConclusionProjectsController.cancelDeletion}" update=":trashForm :buttonsForm :listingForm" />
+						<p:hotkey bind="#{msgs['crud.hotkey.confirmDeletion']}" action="#{manageConclusionProjectsController.delete}" />
+					</div>
+				</p:panel>
+			</h:form>
+		</div>
+
+		<p>&nbsp;</p>
+
+	</ui:define>
+	
+	<ui:define name="help">
+		<h4><h:outputText value="#{msgs['text.hotkeys']}" />:</h4>
+		<ul>
+			<li><b><h:outputText value="#{msgs['crud.hotkey.filterFocus']}" /></b>: <h:outputText value="#{msgs['crud.help.hotkeys.filterFocus']}" />;</li>
+			<li><b><h:outputText value="#{msgs['crud.hotkey.clearFilter']}" /></b>: <h:outputText value="#{msgs['crud.help.hotkeys.clearFilter']}" />;</li>
+			<li><b><h:outputText value="#{msgs['crud.hotkey.create']}" /></b>: <h:outputText value="#{msgs['crud.help.hotkeys.create']}" />;</li>
+			<li><b><h:outputText value="#{msgs['crud.hotkey.retrieve']}" /></b>: <h:outputText value="#{msgs['crud.help.hotkeys.retrieve']}" />;</li>
+			<li><b><h:outputText value="#{msgs['crud.hotkey.update']}" /></b>: <h:outputText value="#{msgs['crud.help.hotkeys.update']}" />;</li>
+			<li><b><h:outputText value="#{msgs['crud.hotkey.delete']}" /></b>: <h:outputText value="#{msgs['crud.help.hotkeys.delete']}" />;</li>
+			<li><b><h:outputText value="#{msgs['crud.hotkey.cancelDeletion']}" /></b>: <h:outputText value="#{msgs['crud.help.hotkeys.cancelDeletion']}" />;</li>
+			<li><b><h:outputText value="#{msgs['crud.hotkey.confirmDeletion']}" /></b>: <h:outputText value="#{msgs['crud.help.hotkeys.confirmDeletion']}" />.</li>
+		</ul>
+	</ui:define>
+</ui:composition>

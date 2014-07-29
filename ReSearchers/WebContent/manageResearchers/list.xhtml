@@ -1,0 +1,142 @@
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:p="http://primefaces.org/ui"
+                template="/resources/templates/default/decorator.xhtml">
+
+	<ui:define name="title"><h:outputText value="#{msgs['manageResearchers.title']}" /></ui:define>
+
+	<ui:define name="body">
+		<h1><h:outputText value="#{msgs['manageResearchers.title']}" /></h1>
+
+		<div class="crud">
+			<!-- Filter bar: used to filter the listing (displayed when there is at least one filter available). -->
+			<h:form id="filterForm">
+				<h:panelGroup id="filterBar" rendered="#{(not empty manageResearchersController.filters)}">
+					<div class="crudFilterBar">
+						<h:outputText value="#{msgs['crud.text.filter']} " />
+						<p:selectOneMenu id="filter" required="true" value="#{manageResearchersController.filterKey}">
+							<f:selectItems value="#{manageResearchersController.filters}" var="filter" itemLabel="#{filter.label}" itemValue="#{filter.key}" />
+							<f:ajax event="change" execute="@form" listener="#{manageResearchersController.changeFilter}" render="@form :listingForm :buttonsForm" />
+						</p:selectOneMenu>
+						<h:outputText value=": " />
+						<p:inputText id="filterText" size="20" required="false" value="#{manageResearchersController.filterParam}" rendered="#{manageResearchersController.filter.options == null}" />
+						<p:selectOneMenu id="filterSelect" required="false" value="#{manageResearchersController.filterParam}" rendered="#{manageResearchersController.filter.options != null}">
+							<f:selectItems value="#{manageResearchersController.filter.reversedOptionsLabels}" />
+						</p:selectOneMenu>
+						<p:commandLink action="#{manageResearchersController.filter}" process="@form" update=":listingForm :buttonsForm">
+							<h:graphicImage style="border: 0;" value="/resources/templates/default/icons/button-find.png" title="#{msgs['crud.button.filter']}" />
+						</p:commandLink>
+						<p:hotkey bind="#{msgs['crud.hotkey.filterFocus']}" handler="if (findObjectById('filterForm:filterText') != null) findObjectById('filterForm:filterText').focus(); else findObjectById('filterForm:filterSelect').focus();" />
+					</div>
+				</h:panelGroup>
+			</h:form>
+
+			<!-- The listing form. -->
+			<h:form id="listingForm">
+				<!-- Filter information (displayed when the listing is being filtered. -->
+				<h:panelGroup id="filterInfo" rendered="#{manageResearchersController.filtering}">
+					<div class="crudFilterInfo">
+						<h:outputFormat value="#{msgs['crud.text.filterInfo']} ">
+							<f:param value="#{manageResearchersController.filter.label}" />
+							<f:param value="#{manageResearchersController.filterLabel}" />
+						</h:outputFormat>
+						<p:commandLink action="#{manageResearchersController.cancelFilter}" process="@form" update="@form :buttonsForm">
+							<h:graphicImage style="border: 0;" value="/resources/templates/default/icons/button-close.png" title="#{msgs['crud.button.cancelFilter']}" />
+						</p:commandLink>
+						<p:hotkey bind="#{msgs['crud.hotkey.clearFilter']}" action="#{manageResearchersController.cancelFilter}" process="@form" update=":listingForm :buttonsForm" />
+					</div>
+				</h:panelGroup>
+
+				<!-- The list of entities. -->
+				<h:panelGroup id="listing" styleClass="listing">
+					<p:dataTable
+						widgetVar="listingTable"
+						value="#{manageResearchersController.lazyEntities}" 
+						var="entity" 
+						rows="#{manageResearchersController.maxDataTableRowsPerPage}" 
+						rowsPerPageTemplate="#{manageResearchersController.halfMaxDataTableRowsPerPage},#{manageResearchersController.maxDataTableRowsPerPage},#{manageResearchersController.doubleMaxDataTableRowsPerPage}"
+						lazy="true" 
+						paginator="true" 
+						selection="#{manageResearchersController.selectedEntity}" 
+						selectionMode="single" 
+						paginatorTemplate="{RowsPerPageDropdown} {FirstPageLink} {PreviousPageLink} {CurrentPageReport} {NextPageLink} {LastPageLink}" 
+						paginatorPosition="bottom" 
+						loadingMessage="#{msgs['text.ajax.loading']}" 
+						emptyMessage="#{manageResearchersController.filtering ? msgs['manageResearchers.text.noEntitiesFiltered'] : msgs['manageResearchers.text.noEntities']}">
+
+						<p:column headerText="#{msgs['manageResearchers.form.completeName']}">
+							<h:outputText value="#{entity.completeName}" />
+						</p:column>
+						<p:column headerText="#{msgs['manageResearchers.form.localUri']}">
+							<h:outputText value="#{entity.localUri}" />
+						</p:column>
+						<p:column headerText="#{msgs['manageResearchers.form.dblpL3sHtmlUri']}">
+							<h:outputText value="#{entity.dblpL3sHtmlUri}" />
+						</p:column>
+						<p:column headerText="#{msgs['manageResearchers.form.dblpL3sRdfUri']}">
+							<h:outputText value="#{entity.dblpL3sRdfUri}" />
+						</p:column>
+						
+						<p:ajax event="rowSelect" update=":buttonsForm" />
+					</p:dataTable>
+					<p:hotkey bind="ctrl+left" handler="goToFirstPage(listingTable);" />
+					<p:hotkey bind="left" handler="goToPreviousPage(listingTable);" />
+					<p:hotkey bind="right" handler="goToNextPage(listingTable);" />
+					<p:hotkey bind="ctrl+right" handler="goToLastPage(listingTable);" />
+				</h:panelGroup>
+			</h:form>
+
+			<!-- Buttons shown below the listing. -->
+			<h:form id="buttonsForm">
+				<div class="crudButtons">
+					<p:commandButton action="#{manageResearchersController.create}" value="#{msgs['crud.button.create']}" icon="buttonNew" />
+					<p:commandButton action="#{manageResearchersController.retrieve}" value="#{msgs['crud.button.retrieve']}" icon="buttonView" disabled="#{manageResearchersController.selectedEntity == null}" />
+					<p:commandButton action="#{manageResearchersController.update}" value="#{msgs['crud.button.update']}" icon="buttonEdit" disabled="#{manageResearchersController.selectedEntity == null}" />
+					<p:commandButton action="#{manageResearchersController.publications}" value="Publications" icon="buttonEdit" disabled="#{manageResearchersController.selectedEntity == null}" />
+					<p:commandButton action="#{manageConclusionProjectsController.list(manageResearchersController.selectedEntity)}" value="Supervisions" icon="buttonView" disabled="#{manageResearchersController.selectedEntity == null}" />
+					<p:commandButton action="#{manageResearchersController.trash}" value="#{msgs['crud.button.delete']}" icon="buttonTrash" disabled="#{manageResearchersController.selectedEntity == null}" process="@this" update=":trashForm" />
+					<p:hotkey bind="#{msgs['crud.hotkey.create']}" action="#{manageResearchersController.create}" />
+					<p:hotkey bind="#{msgs['crud.hotkey.retrieve']}" action="#{manageResearchersController.retrieve}" rendered="#{manageResearchersController.selectedEntity != null}" />
+					<p:hotkey bind="#{msgs['crud.hotkey.update']}" action="#{manageResearchersController.update}" rendered="#{manageResearchersController.selectedEntity != null}" />
+					<p:hotkey bind="#{msgs['crud.hotkey.retrieve']}" action="#{manageResearchersController.publications}" rendered="#{manageResearchersController.selectedEntity != null}" />
+					<p:hotkey bind="#{msgs['crud.hotkey.delete']}" action="#{manageResearchersController.trash}" rendered="#{manageResearchersController.selectedEntity != null}" process="@this" update=":trashForm" />
+				</div>
+			</h:form>
+
+			<!-- The trash panel: shows entities that have been selected for deletion. -->
+			<h:form id="trashForm">
+				<p:panel id="trashPanel" styleClass="trashPanel" header="#{msgs['crud.text.trashHeader']}" toggleable="true" rendered="#{not empty manageResearchersController.trashCan}">
+					<p:dataList value="#{manageResearchersController.trashCan}" var="entity" type="unordered">
+						#{entity.completeName}
+					</p:dataList>
+					<div class="nemoUtilsFormInternalButton">
+						<p:commandButton action="#{manageResearchersController.cancelDeletion}" value="#{msgs['crud.button.cancelDeletion']}" icon="buttonCancel" update=":trashForm :buttonsForm :listingForm" />
+						<p:commandButton action="#{manageResearchersController.delete}" value="#{msgs['crud.button.confirmDeletion']}" icon="buttonOk" />
+						<p:hotkey bind="#{msgs['crud.hotkey.cancelDeletion']}" action="#{manageResearchersController.cancelDeletion}" update=":trashForm :buttonsForm :listingForm" />
+						<p:hotkey bind="#{msgs['crud.hotkey.confirmDeletion']}" action="#{manageResearchersController.delete}" />
+					</div>
+				</p:panel>
+			</h:form>
+		</div>
+
+		<p>&nbsp;</p>
+
+	</ui:define>
+	
+	<ui:define name="help">
+		<h4><h:outputText value="#{msgs['text.hotkeys']}" />:</h4>
+		<ul>
+			<li><b><h:outputText value="#{msgs['crud.hotkey.filterFocus']}" /></b>: <h:outputText value="#{msgs['crud.help.hotkeys.filterFocus']}" />;</li>
+			<li><b><h:outputText value="#{msgs['crud.hotkey.clearFilter']}" /></b>: <h:outputText value="#{msgs['crud.help.hotkeys.clearFilter']}" />;</li>
+			<li><b><h:outputText value="#{msgs['crud.hotkey.create']}" /></b>: <h:outputText value="#{msgs['crud.help.hotkeys.create']}" />;</li>
+			<li><b><h:outputText value="#{msgs['crud.hotkey.retrieve']}" /></b>: <h:outputText value="#{msgs['crud.help.hotkeys.retrieve']}" />;</li>
+			<li><b><h:outputText value="#{msgs['crud.hotkey.update']}" /></b>: <h:outputText value="#{msgs['crud.help.hotkeys.update']}" />;</li>
+			<li><b><h:outputText value="#{msgs['crud.hotkey.delete']}" /></b>: <h:outputText value="#{msgs['crud.help.hotkeys.delete']}" />;</li>
+			<li><b><h:outputText value="#{msgs['crud.hotkey.cancelDeletion']}" /></b>: <h:outputText value="#{msgs['crud.help.hotkeys.cancelDeletion']}" />;</li>
+			<li><b><h:outputText value="#{msgs['crud.hotkey.confirmDeletion']}" /></b>: <h:outputText value="#{msgs['crud.help.hotkeys.confirmDeletion']}" />.</li>
+		</ul>
+	</ui:define>
+</ui:composition>
