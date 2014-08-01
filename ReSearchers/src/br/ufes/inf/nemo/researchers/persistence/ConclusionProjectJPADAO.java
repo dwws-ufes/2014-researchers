@@ -119,11 +119,11 @@ public class ConclusionProjectJPADAO extends BaseJPADAO<ConclusionProject> imple
 	
 	@Override
 	public List<ConclusionProject> retrieveSome(int[] interval) {
-		if(selectedAdvisor == null){
-			return super.retrieveSome(interval);
-		}else{
+		//if(selectedAdvisor == null){
+			//return super.retrieveSome(interval);
+		//}else{
 			return retrieveSome(interval, selectedAdvisor);
-		}
+		//}
 		
 	}
 

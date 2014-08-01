@@ -1,81 +1,42 @@
 package br.ufes.inf.nemo.researchers.controller;
 
-import java.io.BufferedReader;
-import java.io.ByteArrayInputStream;
+import java.io.BufferedWriter;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.FileWriter;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.io.UnsupportedEncodingException;
 import java.io.Writer;
-import java.text.DateFormat;
-import java.text.Normalizer;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import java.util.Set;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipOutputStream;
-import java.io.BufferedWriter;
-import java.io.FileWriter;
-import java.net.UnknownHostException;
 
 import javax.ejb.EJB;
-import javax.el.ELContext;
 import javax.enterprise.context.SessionScoped;
-import javax.faces.context.ExternalContext;
-import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 import javax.inject.Named;
 
-import org.mindswap.pellet.jena.PelletReasonerFactory;
-//import org.semanticweb.HermiT.Reasoner;
-//import org.semanticweb.owlapi.reasoner.OWLReasoner;
-import org.semanticweb.HermiT.Configuration;
 import org.semanticweb.owlapi.apibinding.OWLManager;
-import org.semanticweb.owlapi.change.OWLOntologyChangeData;
-import org.semanticweb.owlapi.io.RDFXMLOntologyFormat;
-import org.semanticweb.owlapi.model.AddAxiom;
 import org.semanticweb.owlapi.model.AddImport;
 import org.semanticweb.owlapi.model.IRI;
-import org.semanticweb.owlapi.model.OWLAxiom;
-import org.semanticweb.owlapi.model.OWLAxiomChange;
 import org.semanticweb.owlapi.model.OWLClass;
 import org.semanticweb.owlapi.model.OWLClassAssertionAxiom;
-import org.semanticweb.owlapi.model.OWLClassExpression;
 import org.semanticweb.owlapi.model.OWLDataFactory;
 import org.semanticweb.owlapi.model.OWLDataProperty;
 import org.semanticweb.owlapi.model.OWLDataPropertyAssertionAxiom;
 import org.semanticweb.owlapi.model.OWLImportsDeclaration;
 import org.semanticweb.owlapi.model.OWLIndividual;
 import org.semanticweb.owlapi.model.OWLLiteral;
-import org.semanticweb.owlapi.model.OWLNamedIndividual;
 import org.semanticweb.owlapi.model.OWLObjectProperty;
 import org.semanticweb.owlapi.model.OWLObjectPropertyAssertionAxiom;
 import org.semanticweb.owlapi.model.OWLOntology;
-import org.semanticweb.owlapi.model.OWLOntologyChangeVisitor;
-import org.semanticweb.owlapi.model.OWLOntologyChangeVisitorEx;
 import org.semanticweb.owlapi.model.OWLOntologyCreationException;
 import org.semanticweb.owlapi.model.OWLOntologyManager;
 import org.semanticweb.owlapi.model.OWLOntologyStorageException;
 import org.semanticweb.owlapi.model.OWLSameIndividualAxiom;
-import org.semanticweb.owlapi.reasoner.ConsoleProgressMonitor;
-import org.semanticweb.owlapi.util.InferredAxiomGenerator;
-import org.semanticweb.owlapi.util.InferredClassAssertionAxiomGenerator;
-import org.semanticweb.owlapi.util.InferredEquivalentClassAxiomGenerator;
-import org.semanticweb.owlapi.util.InferredEquivalentDataPropertiesAxiomGenerator;
-import org.semanticweb.owlapi.util.InferredEquivalentObjectPropertyAxiomGenerator;
-import org.semanticweb.owlapi.util.InferredInverseObjectPropertiesAxiomGenerator;
-import org.semanticweb.owlapi.util.InferredOntologyGenerator;
-import org.semanticweb.owlapi.util.InferredPropertyAssertionGenerator;
-import org.semanticweb.owlapi.util.InferredSubClassAxiomGenerator;
-import org.semanticweb.owlapi.util.InferredSubDataPropertyAxiomGenerator;
-import org.semanticweb.owlapi.util.InferredSubObjectPropertyAxiomGenerator;
 import org.semanticweb.owlapi.vocab.PrefixOWLOntologyFormat;
 
 import br.ufes.inf.nemo.researchers.application.ManageResearchersService;
@@ -83,26 +44,19 @@ import br.ufes.inf.nemo.researchers.domain.ConclusionProject;
 import br.ufes.inf.nemo.researchers.domain.ConclusionProjectType;
 import br.ufes.inf.nemo.researchers.domain.Publication;
 import br.ufes.inf.nemo.researchers.domain.Researcher;
-import br.ufes.inf.nemo.researchers.persistence.ConclusionProjectDAO;
-import br.ufes.inf.nemo.researchers.persistence.ConclusionProjectJPADAO;
 import br.ufes.inf.nemo.researchers.persistence.ResearcherDAO;
 import br.ufes.inf.nemo.util.ejb3.application.CrudService;
 import br.ufes.inf.nemo.util.ejb3.application.filters.SimpleFilter;
 import br.ufes.inf.nemo.util.ejb3.controller.CrudController;
 import br.ufes.inf.nemo.util.ejb3.controller.PersistentObjectConverterFromId;
-import br.ufes.inf.nemo.util.ejb3.persistence.BaseDAO;
 
-import com.hp.hpl.jena.ontology.OntModel;
 import com.hp.hpl.jena.query.QuerySolution;
 import com.hp.hpl.jena.query.ResultSet;
-import com.hp.hpl.jena.rdf.model.InfModel;
 import com.hp.hpl.jena.rdf.model.Literal;
-import com.hp.hpl.jena.rdf.model.ModelFactory;
 import com.hp.hpl.jena.rdf.model.Resource;
-import com.hp.hpl.jena.reasoner.Reasoner;
-import com.hp.hpl.jena.reasoner.ReasonerRegistry;
 import com.hp.hpl.jena.sparql.engine.http.QueryExceptionHTTP;
-import com.hp.hpl.jena.util.FileManager;
+//import org.semanticweb.HermiT.Reasoner;
+//import org.semanticweb.owlapi.reasoner.OWLReasoner;
 
 
 @Named 
@@ -345,9 +299,9 @@ public class ManageResearchersController extends CrudController<Researcher> {
 	}
 	
 	public void researcherToOwl(Researcher researcher) throws OWLOntologyCreationException, OWLOntologyStorageException, IOException{
-		String researcherFileName = "researchers.owl";
-		String researchersOwlUri = "https://github.com/nemo-ufes/nemo-utils/"+researcherFileName;
-		
+		//String researcherFileName = "researchers.owl";
+		//String researchersOwlUri = "https://github.com/nemo-ufes/nemo-utils/"+researcherFileName;
+		String researchersOwlUri = "http://dev.nemo.inf.ufes.br:28080/ReSearchers/resources/owl/researchers.owl";
 		String researchersPfxStr = "researchers";
 		String researcherUri = "http://"+researcher.getLocalUri();
 		
@@ -356,7 +310,8 @@ public class ManageResearchersController extends CrudController<Researcher> {
 		OWLOntology ontology = manager.createOntology(IRI.create(researcherUri));
 		
 		//OWLImportsDeclaration importResDec = factory.getOWLImportsDeclaration(IRI.create(researchersOwlUri));
-		OWLImportsDeclaration importResDec = factory.getOWLImportsDeclaration(IRI.create("file:"+researcherFileName));
+		//OWLImportsDeclaration importResDec = factory.getOWLImportsDeclaration(IRI.create("file:"+researcherFileName));
+		OWLImportsDeclaration importResDec = factory.getOWLImportsDeclaration(IRI.create(researchersOwlUri));
 		
 		manager.applyChange(new AddImport(ontology, importResDec));
 		
@@ -402,7 +357,7 @@ public class ManageResearchersController extends CrudController<Researcher> {
 		output1.write(owl);
 		output1.close();
 		
-		toFileZip(researcher.getCompleteName());
+		//toFileZip(researcher.getCompleteName());
 	}
 	
 	public static void publicationsToOwl(Researcher researcher, OWLOntologyManager manager, OWLDataFactory factory, OWLOntology ontology, String researchersPfxStr, PrefixOWLOntologyFormat researchersPfx) throws OWLOntologyStorageException, IOException{

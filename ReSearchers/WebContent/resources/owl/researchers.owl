@@ -29,8 +29,8 @@
      xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
      xmlns:swrc="http://swrc.ontoware.org/ontology#"
      xmlns:dcterms="http://purl.org/dc/terms/">
-    <owl:Ontology rdf:about="https://github.com/nemo-ufes/nemo-utils/researchers.owl">
-        <owl:imports rdf:resource="file:/C:/Users/fredd_000/Dropbox/Freddy/UFES%20-%20Mestrado/2014-1%20-%20Desenvolvimento%20Web%20e%20Web%20Semântica%20-%20Vítor/Trabalho/Modelo%20OWL/swrc_v0.3.owl"/>
+    <owl:Ontology rdf:about="http://dev.nemo.inf.ufes.br:28080/ReSearchers/resources/owl/researchers.owl">
+        <owl:imports rdf:resource="http://swrc.ontoware.org/ontology"/>
         <owl:imports rdf:resource="http://xmlns.com/foaf/0.1/"/>
     </owl:Ontology>
     
@@ -47,319 +47,316 @@
     
 
 
+    <!-- http://dev.nemo.inf.ufes.br:28080/ReSearchers/resources/owl/researchers.owl#/co-supervises -->
+
+    <owl:ObjectProperty rdf:about="http://dev.nemo.inf.ufes.br:28080/ReSearchers/resources/owl/researchers.owl#/co-supervises">
+        <rdfs:domain rdf:resource="http://dev.nemo.inf.ufes.br:28080/ReSearchers/resources/owl/researchers.owl#Co-Advisor"/>
+        <rdfs:range rdf:resource="http://dev.nemo.inf.ufes.br:28080/ReSearchers/resources/owl/researchers.owl#Co-Supervised_Conclusion_Project_Author"/>
+        <owl:inverseOf rdf:resource="http://dev.nemo.inf.ufes.br:28080/ReSearchers/resources/owl/researchers.owl#INV./co-supervises"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://dev.nemo.inf.ufes.br:28080/ReSearchers/resources/owl/researchers.owl#/supervises -->
+
+    <owl:ObjectProperty rdf:about="http://dev.nemo.inf.ufes.br:28080/ReSearchers/resources/owl/researchers.owl#/supervises">
+        <rdfs:domain rdf:resource="http://dev.nemo.inf.ufes.br:28080/ReSearchers/resources/owl/researchers.owl#Advisor"/>
+        <rdfs:range rdf:resource="http://dev.nemo.inf.ufes.br:28080/ReSearchers/resources/owl/researchers.owl#Conclusion_Project_Author"/>
+        <owl:inverseOf rdf:resource="http://dev.nemo.inf.ufes.br:28080/ReSearchers/resources/owl/researchers.owl#INV./supervises"/>
+        <owl:equivalentProperty rdf:resource="&swrc;supervises"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://dev.nemo.inf.ufes.br:28080/ReSearchers/resources/owl/researchers.owl#INV./co-supervises -->
+
+    <owl:ObjectProperty rdf:about="http://dev.nemo.inf.ufes.br:28080/ReSearchers/resources/owl/researchers.owl#INV./co-supervises">
+        <rdfs:range rdf:resource="http://dev.nemo.inf.ufes.br:28080/ReSearchers/resources/owl/researchers.owl#Co-Advisor"/>
+        <rdfs:domain rdf:resource="http://dev.nemo.inf.ufes.br:28080/ReSearchers/resources/owl/researchers.owl#Co-Supervised_Conclusion_Project_Author"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://dev.nemo.inf.ufes.br:28080/ReSearchers/resources/owl/researchers.owl#INV./supervises -->
+
+    <owl:ObjectProperty rdf:about="http://dev.nemo.inf.ufes.br:28080/ReSearchers/resources/owl/researchers.owl#INV./supervises">
+        <rdfs:range rdf:resource="http://dev.nemo.inf.ufes.br:28080/ReSearchers/resources/owl/researchers.owl#Advisor"/>
+        <rdfs:domain rdf:resource="http://dev.nemo.inf.ufes.br:28080/ReSearchers/resources/owl/researchers.owl#Conclusion_Project_Author"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://dev.nemo.inf.ufes.br:28080/ReSearchers/resources/owl/researchers.owl#INV.advisor_of -->
+
+    <owl:ObjectProperty rdf:about="http://dev.nemo.inf.ufes.br:28080/ReSearchers/resources/owl/researchers.owl#INV.advisor_of">
+        <rdfs:range rdf:resource="http://dev.nemo.inf.ufes.br:28080/ReSearchers/resources/owl/researchers.owl#Advisor"/>
+        <rdfs:domain rdf:resource="http://dev.nemo.inf.ufes.br:28080/ReSearchers/resources/owl/researchers.owl#Conclusion_Project"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://dev.nemo.inf.ufes.br:28080/ReSearchers/resources/owl/researchers.owl#INV.author_of -->
+
+    <owl:ObjectProperty rdf:about="http://dev.nemo.inf.ufes.br:28080/ReSearchers/resources/owl/researchers.owl#INV.author_of">
+        <owl:equivalentProperty rdf:resource="&dc;creator"/>
+        <owl:equivalentProperty rdf:resource="&swrc;author"/>
+        <owl:equivalentProperty rdf:resource="&foaf;maker"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://dev.nemo.inf.ufes.br:28080/ReSearchers/resources/owl/researchers.owl#INV.author_of.Conclusion_Project_Author.Conclusion_Project -->
+
+    <owl:ObjectProperty rdf:about="http://dev.nemo.inf.ufes.br:28080/ReSearchers/resources/owl/researchers.owl#INV.author_of.Conclusion_Project_Author.Conclusion_Project">
+        <rdfs:domain rdf:resource="http://dev.nemo.inf.ufes.br:28080/ReSearchers/resources/owl/researchers.owl#Conclusion_Project"/>
+        <rdfs:range rdf:resource="http://dev.nemo.inf.ufes.br:28080/ReSearchers/resources/owl/researchers.owl#Conclusion_Project_Author"/>
+        <rdfs:subPropertyOf rdf:resource="http://dev.nemo.inf.ufes.br:28080/ReSearchers/resources/owl/researchers.owl#INV.author_of"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://dev.nemo.inf.ufes.br:28080/ReSearchers/resources/owl/researchers.owl#INV.author_of.Paper_Author.Paper -->
+
+    <owl:ObjectProperty rdf:about="http://dev.nemo.inf.ufes.br:28080/ReSearchers/resources/owl/researchers.owl#INV.author_of.Paper_Author.Paper">
+        <rdfs:subPropertyOf rdf:resource="http://dev.nemo.inf.ufes.br:28080/ReSearchers/resources/owl/researchers.owl#INV.author_of"/>
+        <rdfs:domain rdf:resource="http://dev.nemo.inf.ufes.br:28080/ReSearchers/resources/owl/researchers.owl#Paper"/>
+        <rdfs:range rdf:resource="http://dev.nemo.inf.ufes.br:28080/ReSearchers/resources/owl/researchers.owl#Paper_Author"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://dev.nemo.inf.ufes.br:28080/ReSearchers/resources/owl/researchers.owl#INV.co-advisor_of -->
+
+    <owl:ObjectProperty rdf:about="http://dev.nemo.inf.ufes.br:28080/ReSearchers/resources/owl/researchers.owl#INV.co-advisor_of">
+        <rdfs:range rdf:resource="http://dev.nemo.inf.ufes.br:28080/ReSearchers/resources/owl/researchers.owl#Co-Advisor"/>
+        <rdfs:domain rdf:resource="http://dev.nemo.inf.ufes.br:28080/ReSearchers/resources/owl/researchers.owl#Co-Supervised_Conclusion_Project"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://dev.nemo.inf.ufes.br:28080/ReSearchers/resources/owl/researchers.owl#INV.mediation.Co-Supervision.Co-Advisor -->
+
+    <owl:ObjectProperty rdf:about="http://dev.nemo.inf.ufes.br:28080/ReSearchers/resources/owl/researchers.owl#INV.mediation.Co-Supervision.Co-Advisor">
+        <rdfs:domain rdf:resource="http://dev.nemo.inf.ufes.br:28080/ReSearchers/resources/owl/researchers.owl#Co-Advisor"/>
+        <rdfs:range rdf:resource="http://dev.nemo.inf.ufes.br:28080/ReSearchers/resources/owl/researchers.owl#Co-Supervision"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://dev.nemo.inf.ufes.br:28080/ReSearchers/resources/owl/researchers.owl#INV.mediation.Co-Supervision.Co-Supervised_Conclusion_Project -->
+
+    <owl:ObjectProperty rdf:about="http://dev.nemo.inf.ufes.br:28080/ReSearchers/resources/owl/researchers.owl#INV.mediation.Co-Supervision.Co-Supervised_Conclusion_Project">
+        <rdfs:domain rdf:resource="http://dev.nemo.inf.ufes.br:28080/ReSearchers/resources/owl/researchers.owl#Co-Supervised_Conclusion_Project"/>
+        <rdfs:range rdf:resource="http://dev.nemo.inf.ufes.br:28080/ReSearchers/resources/owl/researchers.owl#Co-Supervision"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://dev.nemo.inf.ufes.br:28080/ReSearchers/resources/owl/researchers.owl#INV.mediation.Conclusion_Project_Authorship.Conclusion_Project -->
+
+    <owl:ObjectProperty rdf:about="http://dev.nemo.inf.ufes.br:28080/ReSearchers/resources/owl/researchers.owl#INV.mediation.Conclusion_Project_Authorship.Conclusion_Project">
+        <rdfs:domain rdf:resource="http://dev.nemo.inf.ufes.br:28080/ReSearchers/resources/owl/researchers.owl#Conclusion_Project"/>
+        <rdfs:range rdf:resource="http://dev.nemo.inf.ufes.br:28080/ReSearchers/resources/owl/researchers.owl#Conclusion_Project_Authorship"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://dev.nemo.inf.ufes.br:28080/ReSearchers/resources/owl/researchers.owl#INV.mediation.Conclusion_Project_Authorship.Conclusion_Project_Author -->
+
+    <owl:ObjectProperty rdf:about="http://dev.nemo.inf.ufes.br:28080/ReSearchers/resources/owl/researchers.owl#INV.mediation.Conclusion_Project_Authorship.Conclusion_Project_Author">
+        <rdfs:domain rdf:resource="http://dev.nemo.inf.ufes.br:28080/ReSearchers/resources/owl/researchers.owl#Conclusion_Project_Author"/>
+        <rdfs:range rdf:resource="http://dev.nemo.inf.ufes.br:28080/ReSearchers/resources/owl/researchers.owl#Conclusion_Project_Authorship"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://dev.nemo.inf.ufes.br:28080/ReSearchers/resources/owl/researchers.owl#INV.mediation.Paper_Authorship.Paper -->
+
+    <owl:ObjectProperty rdf:about="http://dev.nemo.inf.ufes.br:28080/ReSearchers/resources/owl/researchers.owl#INV.mediation.Paper_Authorship.Paper">
+        <rdfs:domain rdf:resource="http://dev.nemo.inf.ufes.br:28080/ReSearchers/resources/owl/researchers.owl#Paper"/>
+        <rdfs:range rdf:resource="http://dev.nemo.inf.ufes.br:28080/ReSearchers/resources/owl/researchers.owl#Paper_Authorship"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://dev.nemo.inf.ufes.br:28080/ReSearchers/resources/owl/researchers.owl#INV.mediation.Paper_Authorship.Paper_Author -->
+
+    <owl:ObjectProperty rdf:about="http://dev.nemo.inf.ufes.br:28080/ReSearchers/resources/owl/researchers.owl#INV.mediation.Paper_Authorship.Paper_Author">
+        <rdfs:domain rdf:resource="http://dev.nemo.inf.ufes.br:28080/ReSearchers/resources/owl/researchers.owl#Paper_Author"/>
+        <rdfs:range rdf:resource="http://dev.nemo.inf.ufes.br:28080/ReSearchers/resources/owl/researchers.owl#Paper_Authorship"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://dev.nemo.inf.ufes.br:28080/ReSearchers/resources/owl/researchers.owl#INV.mediation.Supervision.Advisor -->
+
+    <owl:ObjectProperty rdf:about="http://dev.nemo.inf.ufes.br:28080/ReSearchers/resources/owl/researchers.owl#INV.mediation.Supervision.Advisor">
+        <rdfs:domain rdf:resource="http://dev.nemo.inf.ufes.br:28080/ReSearchers/resources/owl/researchers.owl#Advisor"/>
+        <rdfs:range rdf:resource="http://dev.nemo.inf.ufes.br:28080/ReSearchers/resources/owl/researchers.owl#Supervision"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://dev.nemo.inf.ufes.br:28080/ReSearchers/resources/owl/researchers.owl#INV.mediation.Supervision.Conclusion_Project -->
+
+    <owl:ObjectProperty rdf:about="http://dev.nemo.inf.ufes.br:28080/ReSearchers/resources/owl/researchers.owl#INV.mediation.Supervision.Conclusion_Project">
+        <rdfs:domain rdf:resource="http://dev.nemo.inf.ufes.br:28080/ReSearchers/resources/owl/researchers.owl#Conclusion_Project"/>
+        <rdfs:range rdf:resource="http://dev.nemo.inf.ufes.br:28080/ReSearchers/resources/owl/researchers.owl#Supervision"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://dev.nemo.inf.ufes.br:28080/ReSearchers/resources/owl/researchers.owl#advisor_of -->
+
+    <owl:ObjectProperty rdf:about="http://dev.nemo.inf.ufes.br:28080/ReSearchers/resources/owl/researchers.owl#advisor_of">
+        <rdfs:domain rdf:resource="http://dev.nemo.inf.ufes.br:28080/ReSearchers/resources/owl/researchers.owl#Advisor"/>
+        <rdfs:range rdf:resource="http://dev.nemo.inf.ufes.br:28080/ReSearchers/resources/owl/researchers.owl#Conclusion_Project"/>
+        <owl:inverseOf rdf:resource="http://dev.nemo.inf.ufes.br:28080/ReSearchers/resources/owl/researchers.owl#INV.advisor_of"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://dev.nemo.inf.ufes.br:28080/ReSearchers/resources/owl/researchers.owl#author_of -->
+
+    <owl:ObjectProperty rdf:about="http://dev.nemo.inf.ufes.br:28080/ReSearchers/resources/owl/researchers.owl#author_of">
+        <owl:inverseOf rdf:resource="http://dev.nemo.inf.ufes.br:28080/ReSearchers/resources/owl/researchers.owl#INV.author_of"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://dev.nemo.inf.ufes.br:28080/ReSearchers/resources/owl/researchers.owl#author_of.Conclusion_Project_Author.Conclusion_Project -->
+
+    <owl:ObjectProperty rdf:about="http://dev.nemo.inf.ufes.br:28080/ReSearchers/resources/owl/researchers.owl#author_of.Conclusion_Project_Author.Conclusion_Project">
+        <rdfs:range rdf:resource="http://dev.nemo.inf.ufes.br:28080/ReSearchers/resources/owl/researchers.owl#Conclusion_Project"/>
+        <rdfs:domain rdf:resource="http://dev.nemo.inf.ufes.br:28080/ReSearchers/resources/owl/researchers.owl#Conclusion_Project_Author"/>
+        <owl:inverseOf rdf:resource="http://dev.nemo.inf.ufes.br:28080/ReSearchers/resources/owl/researchers.owl#INV.author_of.Conclusion_Project_Author.Conclusion_Project"/>
+        <rdfs:subPropertyOf rdf:resource="http://dev.nemo.inf.ufes.br:28080/ReSearchers/resources/owl/researchers.owl#author_of"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://dev.nemo.inf.ufes.br:28080/ReSearchers/resources/owl/researchers.owl#author_of.Paper_Author.Paper -->
+
+    <owl:ObjectProperty rdf:about="http://dev.nemo.inf.ufes.br:28080/ReSearchers/resources/owl/researchers.owl#author_of.Paper_Author.Paper">
+        <owl:inverseOf rdf:resource="http://dev.nemo.inf.ufes.br:28080/ReSearchers/resources/owl/researchers.owl#INV.author_of.Paper_Author.Paper"/>
+        <rdfs:range rdf:resource="http://dev.nemo.inf.ufes.br:28080/ReSearchers/resources/owl/researchers.owl#Paper"/>
+        <rdfs:domain rdf:resource="http://dev.nemo.inf.ufes.br:28080/ReSearchers/resources/owl/researchers.owl#Paper_Author"/>
+        <rdfs:subPropertyOf rdf:resource="http://dev.nemo.inf.ufes.br:28080/ReSearchers/resources/owl/researchers.owl#author_of"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://dev.nemo.inf.ufes.br:28080/ReSearchers/resources/owl/researchers.owl#co-advisor_of -->
+
+    <owl:ObjectProperty rdf:about="http://dev.nemo.inf.ufes.br:28080/ReSearchers/resources/owl/researchers.owl#co-advisor_of">
+        <rdfs:domain rdf:resource="http://dev.nemo.inf.ufes.br:28080/ReSearchers/resources/owl/researchers.owl#Co-Advisor"/>
+        <rdfs:range rdf:resource="http://dev.nemo.inf.ufes.br:28080/ReSearchers/resources/owl/researchers.owl#Co-Supervised_Conclusion_Project"/>
+        <owl:inverseOf rdf:resource="http://dev.nemo.inf.ufes.br:28080/ReSearchers/resources/owl/researchers.owl#INV.co-advisor_of"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://dev.nemo.inf.ufes.br:28080/ReSearchers/resources/owl/researchers.owl#mediation.Co-Supervision.Co-Advisor -->
+
+    <owl:ObjectProperty rdf:about="http://dev.nemo.inf.ufes.br:28080/ReSearchers/resources/owl/researchers.owl#mediation.Co-Supervision.Co-Advisor">
+        <rdfs:range rdf:resource="http://dev.nemo.inf.ufes.br:28080/ReSearchers/resources/owl/researchers.owl#Co-Advisor"/>
+        <rdfs:domain rdf:resource="http://dev.nemo.inf.ufes.br:28080/ReSearchers/resources/owl/researchers.owl#Co-Supervision"/>
+        <owl:inverseOf rdf:resource="http://dev.nemo.inf.ufes.br:28080/ReSearchers/resources/owl/researchers.owl#INV.mediation.Co-Supervision.Co-Advisor"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://dev.nemo.inf.ufes.br:28080/ReSearchers/resources/owl/researchers.owl#mediation.Co-Supervision.Co-Supervised_Conclusion_Project -->
+
+    <owl:ObjectProperty rdf:about="http://dev.nemo.inf.ufes.br:28080/ReSearchers/resources/owl/researchers.owl#mediation.Co-Supervision.Co-Supervised_Conclusion_Project">
+        <rdfs:range rdf:resource="http://dev.nemo.inf.ufes.br:28080/ReSearchers/resources/owl/researchers.owl#Co-Supervised_Conclusion_Project"/>
+        <rdfs:domain rdf:resource="http://dev.nemo.inf.ufes.br:28080/ReSearchers/resources/owl/researchers.owl#Co-Supervision"/>
+        <owl:inverseOf rdf:resource="http://dev.nemo.inf.ufes.br:28080/ReSearchers/resources/owl/researchers.owl#INV.mediation.Co-Supervision.Co-Supervised_Conclusion_Project"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://dev.nemo.inf.ufes.br:28080/ReSearchers/resources/owl/researchers.owl#mediation.Conclusion_Project_Authorship.Conclusion_Project -->
+
+    <owl:ObjectProperty rdf:about="http://dev.nemo.inf.ufes.br:28080/ReSearchers/resources/owl/researchers.owl#mediation.Conclusion_Project_Authorship.Conclusion_Project">
+        <rdfs:range rdf:resource="http://dev.nemo.inf.ufes.br:28080/ReSearchers/resources/owl/researchers.owl#Conclusion_Project"/>
+        <rdfs:domain rdf:resource="http://dev.nemo.inf.ufes.br:28080/ReSearchers/resources/owl/researchers.owl#Conclusion_Project_Authorship"/>
+        <owl:inverseOf rdf:resource="http://dev.nemo.inf.ufes.br:28080/ReSearchers/resources/owl/researchers.owl#INV.mediation.Conclusion_Project_Authorship.Conclusion_Project"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://dev.nemo.inf.ufes.br:28080/ReSearchers/resources/owl/researchers.owl#mediation.Conclusion_Project_Authorship.Conclusion_Project_Author -->
+
+    <owl:ObjectProperty rdf:about="http://dev.nemo.inf.ufes.br:28080/ReSearchers/resources/owl/researchers.owl#mediation.Conclusion_Project_Authorship.Conclusion_Project_Author">
+        <rdfs:range rdf:resource="http://dev.nemo.inf.ufes.br:28080/ReSearchers/resources/owl/researchers.owl#Conclusion_Project_Author"/>
+        <rdfs:domain rdf:resource="http://dev.nemo.inf.ufes.br:28080/ReSearchers/resources/owl/researchers.owl#Conclusion_Project_Authorship"/>
+        <owl:inverseOf rdf:resource="http://dev.nemo.inf.ufes.br:28080/ReSearchers/resources/owl/researchers.owl#INV.mediation.Conclusion_Project_Authorship.Conclusion_Project_Author"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://dev.nemo.inf.ufes.br:28080/ReSearchers/resources/owl/researchers.owl#mediation.Paper_Authorship.Paper -->
+
+    <owl:ObjectProperty rdf:about="http://dev.nemo.inf.ufes.br:28080/ReSearchers/resources/owl/researchers.owl#mediation.Paper_Authorship.Paper">
+        <owl:inverseOf rdf:resource="http://dev.nemo.inf.ufes.br:28080/ReSearchers/resources/owl/researchers.owl#INV.mediation.Paper_Authorship.Paper"/>
+        <rdfs:range rdf:resource="http://dev.nemo.inf.ufes.br:28080/ReSearchers/resources/owl/researchers.owl#Paper"/>
+        <rdfs:domain rdf:resource="http://dev.nemo.inf.ufes.br:28080/ReSearchers/resources/owl/researchers.owl#Paper_Authorship"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://dev.nemo.inf.ufes.br:28080/ReSearchers/resources/owl/researchers.owl#mediation.Paper_Authorship.Paper_Author -->
+
+    <owl:ObjectProperty rdf:about="http://dev.nemo.inf.ufes.br:28080/ReSearchers/resources/owl/researchers.owl#mediation.Paper_Authorship.Paper_Author">
+        <owl:inverseOf rdf:resource="http://dev.nemo.inf.ufes.br:28080/ReSearchers/resources/owl/researchers.owl#INV.mediation.Paper_Authorship.Paper_Author"/>
+        <rdfs:range rdf:resource="http://dev.nemo.inf.ufes.br:28080/ReSearchers/resources/owl/researchers.owl#Paper_Author"/>
+        <rdfs:domain rdf:resource="http://dev.nemo.inf.ufes.br:28080/ReSearchers/resources/owl/researchers.owl#Paper_Authorship"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://dev.nemo.inf.ufes.br:28080/ReSearchers/resources/owl/researchers.owl#mediation.Supervision.Advisor -->
+
+    <owl:ObjectProperty rdf:about="http://dev.nemo.inf.ufes.br:28080/ReSearchers/resources/owl/researchers.owl#mediation.Supervision.Advisor">
+        <rdfs:range rdf:resource="http://dev.nemo.inf.ufes.br:28080/ReSearchers/resources/owl/researchers.owl#Advisor"/>
+        <owl:inverseOf rdf:resource="http://dev.nemo.inf.ufes.br:28080/ReSearchers/resources/owl/researchers.owl#INV.mediation.Supervision.Advisor"/>
+        <rdfs:domain rdf:resource="http://dev.nemo.inf.ufes.br:28080/ReSearchers/resources/owl/researchers.owl#Supervision"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://dev.nemo.inf.ufes.br:28080/ReSearchers/resources/owl/researchers.owl#mediation.Supervision.Conclusion_Project -->
+
+    <owl:ObjectProperty rdf:about="http://dev.nemo.inf.ufes.br:28080/ReSearchers/resources/owl/researchers.owl#mediation.Supervision.Conclusion_Project">
+        <rdfs:range rdf:resource="http://dev.nemo.inf.ufes.br:28080/ReSearchers/resources/owl/researchers.owl#Conclusion_Project"/>
+        <owl:inverseOf rdf:resource="http://dev.nemo.inf.ufes.br:28080/ReSearchers/resources/owl/researchers.owl#INV.mediation.Supervision.Conclusion_Project"/>
+        <rdfs:domain rdf:resource="http://dev.nemo.inf.ufes.br:28080/ReSearchers/resources/owl/researchers.owl#Supervision"/>
+    </owl:ObjectProperty>
+    
+
+
     <!-- http://purl.org/dc/elements/1.1/creator -->
 
-    <owl:ObjectProperty rdf:about="&dc;creator">
-        <owl:equivalentProperty rdf:resource="&researchers;INV.author_of"/>
-    </owl:ObjectProperty>
+    <owl:ObjectProperty rdf:about="&dc;creator"/>
     
 
 
     <!-- http://swrc.ontoware.org/ontology#author -->
 
-    <owl:ObjectProperty rdf:about="&swrc;author">
-        <owl:equivalentProperty rdf:resource="&researchers;INV.author_of"/>
-    </owl:ObjectProperty>
+    <owl:ObjectProperty rdf:about="&swrc;author"/>
     
 
 
     <!-- http://swrc.ontoware.org/ontology#supervises -->
 
-    <owl:ObjectProperty rdf:about="&swrc;supervises">
-        <owl:equivalentProperty rdf:resource="&researchers;/supervises"/>
-    </owl:ObjectProperty>
+    <owl:ObjectProperty rdf:about="&swrc;supervises"/>
     
 
 
     <!-- http://xmlns.com/foaf/0.1/maker -->
 
-    <owl:ObjectProperty rdf:about="&foaf;maker">
-        <owl:equivalentProperty rdf:resource="&researchers;INV.author_of"/>
-    </owl:ObjectProperty>
-    
-
-
-    <!-- https://github.com/nemo-ufes/nemo-utils/researchers.owl#/co-supervises -->
-
-    <owl:ObjectProperty rdf:about="&researchers;/co-supervises">
-        <rdfs:domain rdf:resource="&researchers;Co-Advisor"/>
-        <rdfs:range rdf:resource="&researchers;Co-Supervised_Conclusion_Project_Author"/>
-        <owl:inverseOf rdf:resource="&researchers;INV./co-supervises"/>
-    </owl:ObjectProperty>
-    
-
-
-    <!-- https://github.com/nemo-ufes/nemo-utils/researchers.owl#/supervises -->
-
-    <owl:ObjectProperty rdf:about="&researchers;/supervises">
-        <rdfs:domain rdf:resource="&researchers;Advisor"/>
-        <rdfs:range rdf:resource="&researchers;Conclusion_Project_Author"/>
-        <owl:inverseOf rdf:resource="&researchers;INV./supervises"/>
-    </owl:ObjectProperty>
-    
-
-
-    <!-- https://github.com/nemo-ufes/nemo-utils/researchers.owl#INV./co-supervises -->
-
-    <owl:ObjectProperty rdf:about="&researchers;INV./co-supervises">
-        <rdfs:range rdf:resource="&researchers;Co-Advisor"/>
-        <rdfs:domain rdf:resource="&researchers;Co-Supervised_Conclusion_Project_Author"/>
-    </owl:ObjectProperty>
-    
-
-
-    <!-- https://github.com/nemo-ufes/nemo-utils/researchers.owl#INV./supervises -->
-
-    <owl:ObjectProperty rdf:about="&researchers;INV./supervises">
-        <rdfs:range rdf:resource="&researchers;Advisor"/>
-        <rdfs:domain rdf:resource="&researchers;Conclusion_Project_Author"/>
-    </owl:ObjectProperty>
-    
-
-
-    <!-- https://github.com/nemo-ufes/nemo-utils/researchers.owl#INV.advisor_of -->
-
-    <owl:ObjectProperty rdf:about="&researchers;INV.advisor_of">
-        <rdfs:range rdf:resource="&researchers;Advisor"/>
-        <rdfs:domain rdf:resource="&researchers;Conclusion_Project"/>
-    </owl:ObjectProperty>
-    
-
-
-    <!-- https://github.com/nemo-ufes/nemo-utils/researchers.owl#INV.author_of -->
-
-    <owl:ObjectProperty rdf:about="&researchers;INV.author_of"/>
-    
-
-
-    <!-- https://github.com/nemo-ufes/nemo-utils/researchers.owl#INV.author_of.Conclusion_Project_Author.Conclusion_Project -->
-
-    <owl:ObjectProperty rdf:about="&researchers;INV.author_of.Conclusion_Project_Author.Conclusion_Project">
-        <rdfs:domain rdf:resource="&researchers;Conclusion_Project"/>
-        <rdfs:range rdf:resource="&researchers;Conclusion_Project_Author"/>
-        <rdfs:subPropertyOf rdf:resource="&researchers;INV.author_of"/>
-    </owl:ObjectProperty>
-    
-
-
-    <!-- https://github.com/nemo-ufes/nemo-utils/researchers.owl#INV.author_of.Paper_Author.Paper -->
-
-    <owl:ObjectProperty rdf:about="&researchers;INV.author_of.Paper_Author.Paper">
-        <rdfs:subPropertyOf rdf:resource="&researchers;INV.author_of"/>
-        <rdfs:domain rdf:resource="&researchers;Paper"/>
-        <rdfs:range rdf:resource="&researchers;Paper_Author"/>
-    </owl:ObjectProperty>
-    
-
-
-    <!-- https://github.com/nemo-ufes/nemo-utils/researchers.owl#INV.co-advisor_of -->
-
-    <owl:ObjectProperty rdf:about="&researchers;INV.co-advisor_of">
-        <rdfs:range rdf:resource="&researchers;Co-Advisor"/>
-        <rdfs:domain rdf:resource="&researchers;Co-Supervised_Conclusion_Project"/>
-    </owl:ObjectProperty>
-    
-
-
-    <!-- https://github.com/nemo-ufes/nemo-utils/researchers.owl#INV.mediation.Co-Supervision.Co-Advisor -->
-
-    <owl:ObjectProperty rdf:about="&researchers;INV.mediation.Co-Supervision.Co-Advisor">
-        <rdfs:domain rdf:resource="&researchers;Co-Advisor"/>
-        <rdfs:range rdf:resource="&researchers;Co-Supervision"/>
-    </owl:ObjectProperty>
-    
-
-
-    <!-- https://github.com/nemo-ufes/nemo-utils/researchers.owl#INV.mediation.Co-Supervision.Co-Supervised_Conclusion_Project -->
-
-    <owl:ObjectProperty rdf:about="&researchers;INV.mediation.Co-Supervision.Co-Supervised_Conclusion_Project">
-        <rdfs:domain rdf:resource="&researchers;Co-Supervised_Conclusion_Project"/>
-        <rdfs:range rdf:resource="&researchers;Co-Supervision"/>
-    </owl:ObjectProperty>
-    
-
-
-    <!-- https://github.com/nemo-ufes/nemo-utils/researchers.owl#INV.mediation.Conclusion_Project_Authorship.Conclusion_Project -->
-
-    <owl:ObjectProperty rdf:about="&researchers;INV.mediation.Conclusion_Project_Authorship.Conclusion_Project">
-        <rdfs:domain rdf:resource="&researchers;Conclusion_Project"/>
-        <rdfs:range rdf:resource="&researchers;Conclusion_Project_Authorship"/>
-    </owl:ObjectProperty>
-    
-
-
-    <!-- https://github.com/nemo-ufes/nemo-utils/researchers.owl#INV.mediation.Conclusion_Project_Authorship.Conclusion_Project_Author -->
-
-    <owl:ObjectProperty rdf:about="&researchers;INV.mediation.Conclusion_Project_Authorship.Conclusion_Project_Author">
-        <rdfs:domain rdf:resource="&researchers;Conclusion_Project_Author"/>
-        <rdfs:range rdf:resource="&researchers;Conclusion_Project_Authorship"/>
-    </owl:ObjectProperty>
-    
-
-
-    <!-- https://github.com/nemo-ufes/nemo-utils/researchers.owl#INV.mediation.Paper_Authorship.Paper -->
-
-    <owl:ObjectProperty rdf:about="&researchers;INV.mediation.Paper_Authorship.Paper">
-        <rdfs:domain rdf:resource="&researchers;Paper"/>
-        <rdfs:range rdf:resource="&researchers;Paper_Authorship"/>
-    </owl:ObjectProperty>
-    
-
-
-    <!-- https://github.com/nemo-ufes/nemo-utils/researchers.owl#INV.mediation.Paper_Authorship.Paper_Author -->
-
-    <owl:ObjectProperty rdf:about="&researchers;INV.mediation.Paper_Authorship.Paper_Author">
-        <rdfs:domain rdf:resource="&researchers;Paper_Author"/>
-        <rdfs:range rdf:resource="&researchers;Paper_Authorship"/>
-    </owl:ObjectProperty>
-    
-
-
-    <!-- https://github.com/nemo-ufes/nemo-utils/researchers.owl#INV.mediation.Supervision.Advisor -->
-
-    <owl:ObjectProperty rdf:about="&researchers;INV.mediation.Supervision.Advisor">
-        <rdfs:domain rdf:resource="&researchers;Advisor"/>
-        <rdfs:range rdf:resource="&researchers;Supervision"/>
-    </owl:ObjectProperty>
-    
-
-
-    <!-- https://github.com/nemo-ufes/nemo-utils/researchers.owl#INV.mediation.Supervision.Conclusion_Project -->
-
-    <owl:ObjectProperty rdf:about="&researchers;INV.mediation.Supervision.Conclusion_Project">
-        <rdfs:domain rdf:resource="&researchers;Conclusion_Project"/>
-        <rdfs:range rdf:resource="&researchers;Supervision"/>
-    </owl:ObjectProperty>
-    
-
-
-    <!-- https://github.com/nemo-ufes/nemo-utils/researchers.owl#advisor_of -->
-
-    <owl:ObjectProperty rdf:about="&researchers;advisor_of">
-        <rdfs:domain rdf:resource="&researchers;Advisor"/>
-        <rdfs:range rdf:resource="&researchers;Conclusion_Project"/>
-        <owl:inverseOf rdf:resource="&researchers;INV.advisor_of"/>
-    </owl:ObjectProperty>
-    
-
-
-    <!-- https://github.com/nemo-ufes/nemo-utils/researchers.owl#author_of -->
-
-    <owl:ObjectProperty rdf:about="&researchers;author_of">
-        <owl:inverseOf rdf:resource="&researchers;INV.author_of"/>
-    </owl:ObjectProperty>
-    
-
-
-    <!-- https://github.com/nemo-ufes/nemo-utils/researchers.owl#author_of.Conclusion_Project_Author.Conclusion_Project -->
-
-    <owl:ObjectProperty rdf:about="&researchers;author_of.Conclusion_Project_Author.Conclusion_Project">
-        <rdfs:range rdf:resource="&researchers;Conclusion_Project"/>
-        <rdfs:domain rdf:resource="&researchers;Conclusion_Project_Author"/>
-        <owl:inverseOf rdf:resource="&researchers;INV.author_of.Conclusion_Project_Author.Conclusion_Project"/>
-        <rdfs:subPropertyOf rdf:resource="&researchers;author_of"/>
-    </owl:ObjectProperty>
-    
-
-
-    <!-- https://github.com/nemo-ufes/nemo-utils/researchers.owl#author_of.Paper_Author.Paper -->
-
-    <owl:ObjectProperty rdf:about="&researchers;author_of.Paper_Author.Paper">
-        <owl:inverseOf rdf:resource="&researchers;INV.author_of.Paper_Author.Paper"/>
-        <rdfs:range rdf:resource="&researchers;Paper"/>
-        <rdfs:domain rdf:resource="&researchers;Paper_Author"/>
-        <rdfs:subPropertyOf rdf:resource="&researchers;author_of"/>
-    </owl:ObjectProperty>
-    
-
-
-    <!-- https://github.com/nemo-ufes/nemo-utils/researchers.owl#co-advisor_of -->
-
-    <owl:ObjectProperty rdf:about="&researchers;co-advisor_of">
-        <rdfs:domain rdf:resource="&researchers;Co-Advisor"/>
-        <rdfs:range rdf:resource="&researchers;Co-Supervised_Conclusion_Project"/>
-        <owl:inverseOf rdf:resource="&researchers;INV.co-advisor_of"/>
-    </owl:ObjectProperty>
-    
-
-
-    <!-- https://github.com/nemo-ufes/nemo-utils/researchers.owl#mediation.Co-Supervision.Co-Advisor -->
-
-    <owl:ObjectProperty rdf:about="&researchers;mediation.Co-Supervision.Co-Advisor">
-        <rdfs:range rdf:resource="&researchers;Co-Advisor"/>
-        <rdfs:domain rdf:resource="&researchers;Co-Supervision"/>
-        <owl:inverseOf rdf:resource="&researchers;INV.mediation.Co-Supervision.Co-Advisor"/>
-    </owl:ObjectProperty>
-    
-
-
-    <!-- https://github.com/nemo-ufes/nemo-utils/researchers.owl#mediation.Co-Supervision.Co-Supervised_Conclusion_Project -->
-
-    <owl:ObjectProperty rdf:about="&researchers;mediation.Co-Supervision.Co-Supervised_Conclusion_Project">
-        <rdfs:range rdf:resource="&researchers;Co-Supervised_Conclusion_Project"/>
-        <rdfs:domain rdf:resource="&researchers;Co-Supervision"/>
-        <owl:inverseOf rdf:resource="&researchers;INV.mediation.Co-Supervision.Co-Supervised_Conclusion_Project"/>
-    </owl:ObjectProperty>
-    
-
-
-    <!-- https://github.com/nemo-ufes/nemo-utils/researchers.owl#mediation.Conclusion_Project_Authorship.Conclusion_Project -->
-
-    <owl:ObjectProperty rdf:about="&researchers;mediation.Conclusion_Project_Authorship.Conclusion_Project">
-        <rdfs:range rdf:resource="&researchers;Conclusion_Project"/>
-        <rdfs:domain rdf:resource="&researchers;Conclusion_Project_Authorship"/>
-        <owl:inverseOf rdf:resource="&researchers;INV.mediation.Conclusion_Project_Authorship.Conclusion_Project"/>
-    </owl:ObjectProperty>
-    
-
-
-    <!-- https://github.com/nemo-ufes/nemo-utils/researchers.owl#mediation.Conclusion_Project_Authorship.Conclusion_Project_Author -->
-
-    <owl:ObjectProperty rdf:about="&researchers;mediation.Conclusion_Project_Authorship.Conclusion_Project_Author">
-        <rdfs:range rdf:resource="&researchers;Conclusion_Project_Author"/>
-        <rdfs:domain rdf:resource="&researchers;Conclusion_Project_Authorship"/>
-        <owl:inverseOf rdf:resource="&researchers;INV.mediation.Conclusion_Project_Authorship.Conclusion_Project_Author"/>
-    </owl:ObjectProperty>
-    
-
-
-    <!-- https://github.com/nemo-ufes/nemo-utils/researchers.owl#mediation.Paper_Authorship.Paper -->
-
-    <owl:ObjectProperty rdf:about="&researchers;mediation.Paper_Authorship.Paper">
-        <owl:inverseOf rdf:resource="&researchers;INV.mediation.Paper_Authorship.Paper"/>
-        <rdfs:range rdf:resource="&researchers;Paper"/>
-        <rdfs:domain rdf:resource="&researchers;Paper_Authorship"/>
-    </owl:ObjectProperty>
-    
-
-
-    <!-- https://github.com/nemo-ufes/nemo-utils/researchers.owl#mediation.Paper_Authorship.Paper_Author -->
-
-    <owl:ObjectProperty rdf:about="&researchers;mediation.Paper_Authorship.Paper_Author">
-        <owl:inverseOf rdf:resource="&researchers;INV.mediation.Paper_Authorship.Paper_Author"/>
-        <rdfs:range rdf:resource="&researchers;Paper_Author"/>
-        <rdfs:domain rdf:resource="&researchers;Paper_Authorship"/>
-    </owl:ObjectProperty>
-    
-
-
-    <!-- https://github.com/nemo-ufes/nemo-utils/researchers.owl#mediation.Supervision.Advisor -->
-
-    <owl:ObjectProperty rdf:about="&researchers;mediation.Supervision.Advisor">
-        <rdfs:range rdf:resource="&researchers;Advisor"/>
-        <owl:inverseOf rdf:resource="&researchers;INV.mediation.Supervision.Advisor"/>
-        <rdfs:domain rdf:resource="&researchers;Supervision"/>
-    </owl:ObjectProperty>
-    
-
-
-    <!-- https://github.com/nemo-ufes/nemo-utils/researchers.owl#mediation.Supervision.Conclusion_Project -->
-
-    <owl:ObjectProperty rdf:about="&researchers;mediation.Supervision.Conclusion_Project">
-        <rdfs:range rdf:resource="&researchers;Conclusion_Project"/>
-        <owl:inverseOf rdf:resource="&researchers;INV.mediation.Supervision.Conclusion_Project"/>
-        <rdfs:domain rdf:resource="&researchers;Supervision"/>
-    </owl:ObjectProperty>
+    <owl:ObjectProperty rdf:about="&foaf;maker"/>
     
 
 
@@ -374,6 +371,37 @@
     
 
 
+    <!-- http://dev.nemo.inf.ufes.br:28080/ReSearchers/resources/owl/researchers.owl#Completed.conclusion_year -->
+
+    <owl:DatatypeProperty rdf:about="http://dev.nemo.inf.ufes.br:28080/ReSearchers/resources/owl/researchers.owl#Completed.conclusion_year">
+        <rdfs:domain rdf:resource="http://dev.nemo.inf.ufes.br:28080/ReSearchers/resources/owl/researchers.owl#Completed"/>
+        <rdfs:range rdf:resource="&xsd;integer"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://dev.nemo.inf.ufes.br:28080/ReSearchers/resources/owl/researchers.owl#Person.complete_name -->
+
+    <owl:DatatypeProperty rdf:about="http://dev.nemo.inf.ufes.br:28080/ReSearchers/resources/owl/researchers.owl#Person.complete_name">
+        <rdfs:domain rdf:resource="http://dev.nemo.inf.ufes.br:28080/ReSearchers/resources/owl/researchers.owl#Person"/>
+        <owl:equivalentProperty rdf:resource="&swrc;name"/>
+        <rdfs:range rdf:resource="&xsd;string"/>
+        <owl:equivalentProperty rdf:resource="&foaf;name"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://dev.nemo.inf.ufes.br:28080/ReSearchers/resources/owl/researchers.owl#Publication.title -->
+
+    <owl:DatatypeProperty rdf:about="http://dev.nemo.inf.ufes.br:28080/ReSearchers/resources/owl/researchers.owl#Publication.title">
+        <rdfs:domain rdf:resource="http://dev.nemo.inf.ufes.br:28080/ReSearchers/resources/owl/researchers.owl#Publication"/>
+        <owl:equivalentProperty rdf:resource="&dcterms;title"/>
+        <owl:equivalentProperty rdf:resource="&swrc;title"/>
+        <rdfs:range rdf:resource="&xsd;string"/>
+    </owl:DatatypeProperty>
+    
+
+
     <!-- http://purl.org/dc/terms/issued -->
 
     <owl:DatatypeProperty rdf:about="&dcterms;issued"/>
@@ -382,60 +410,25 @@
 
     <!-- http://purl.org/dc/terms/title -->
 
-    <owl:DatatypeProperty rdf:about="&dcterms;title">
-        <owl:equivalentProperty rdf:resource="&researchers;Publication.title"/>
-    </owl:DatatypeProperty>
+    <owl:DatatypeProperty rdf:about="&dcterms;title"/>
     
 
 
     <!-- http://swrc.ontoware.org/ontology#name -->
 
-    <owl:DatatypeProperty rdf:about="&swrc;name">
-        <owl:equivalentProperty rdf:resource="&researchers;Person.complete_name"/>
-    </owl:DatatypeProperty>
+    <owl:DatatypeProperty rdf:about="&swrc;name"/>
     
 
 
     <!-- http://swrc.ontoware.org/ontology#title -->
 
-    <rdf:Description rdf:about="&swrc;title">
-        <owl:equivalentProperty rdf:resource="&researchers;Publication.title"/>
-    </rdf:Description>
+    <rdf:Description rdf:about="&swrc;title"/>
     
 
 
     <!-- http://xmlns.com/foaf/0.1/name -->
 
-    <owl:DatatypeProperty rdf:about="&foaf;name">
-        <owl:equivalentProperty rdf:resource="&researchers;Person.complete_name"/>
-    </owl:DatatypeProperty>
-    
-
-
-    <!-- https://github.com/nemo-ufes/nemo-utils/researchers.owl#Completed.conclusion_year -->
-
-    <owl:DatatypeProperty rdf:about="&researchers;Completed.conclusion_year">
-        <rdfs:range rdf:resource="&xsd;integer"/>
-        <rdfs:domain rdf:resource="&researchers;Completed"/>
-    </owl:DatatypeProperty>
-    
-
-
-    <!-- https://github.com/nemo-ufes/nemo-utils/researchers.owl#Person.complete_name -->
-
-    <owl:DatatypeProperty rdf:about="&researchers;Person.complete_name">
-        <rdfs:range rdf:resource="&xsd;string"/>
-        <rdfs:domain rdf:resource="&researchers;Person"/>
-    </owl:DatatypeProperty>
-    
-
-
-    <!-- https://github.com/nemo-ufes/nemo-utils/researchers.owl#Publication.title -->
-
-    <owl:DatatypeProperty rdf:about="&researchers;Publication.title">
-        <rdfs:range rdf:resource="&xsd;string"/>
-        <rdfs:domain rdf:resource="&researchers;Publication"/>
-    </owl:DatatypeProperty>
+    <owl:DatatypeProperty rdf:about="&foaf;name"/>
     
 
 
@@ -450,43 +443,492 @@
     
 
 
+    <!-- http://dev.nemo.inf.ufes.br:28080/ReSearchers/resources/owl/researchers.owl#Advisor -->
+
+    <owl:Class rdf:about="http://dev.nemo.inf.ufes.br:28080/ReSearchers/resources/owl/researchers.owl#Advisor">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://dev.nemo.inf.ufes.br:28080/ReSearchers/resources/owl/researchers.owl#/supervises"/>
+                        <owl:someValuesFrom rdf:resource="http://dev.nemo.inf.ufes.br:28080/ReSearchers/resources/owl/researchers.owl#Conclusion_Project_Author"/>
+                    </owl:Restriction>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://dev.nemo.inf.ufes.br:28080/ReSearchers/resources/owl/researchers.owl#INV.mediation.Supervision.Advisor"/>
+                        <owl:someValuesFrom rdf:resource="http://dev.nemo.inf.ufes.br:28080/ReSearchers/resources/owl/researchers.owl#Supervision"/>
+                    </owl:Restriction>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://dev.nemo.inf.ufes.br:28080/ReSearchers/resources/owl/researchers.owl#advisor_of"/>
+                        <owl:someValuesFrom rdf:resource="http://dev.nemo.inf.ufes.br:28080/ReSearchers/resources/owl/researchers.owl#Conclusion_Project"/>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="http://dev.nemo.inf.ufes.br:28080/ReSearchers/resources/owl/researchers.owl#Researcher"/>
+    </owl:Class>
+    
+
+
+    <!-- http://dev.nemo.inf.ufes.br:28080/ReSearchers/resources/owl/researchers.owl#Author -->
+
+    <owl:Class rdf:about="http://dev.nemo.inf.ufes.br:28080/ReSearchers/resources/owl/researchers.owl#Author">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <owl:Class>
+                        <owl:unionOf rdf:parseType="Collection">
+                            <rdf:Description rdf:about="http://dev.nemo.inf.ufes.br:28080/ReSearchers/resources/owl/researchers.owl#Conclusion_Project_Author"/>
+                            <rdf:Description rdf:about="http://dev.nemo.inf.ufes.br:28080/ReSearchers/resources/owl/researchers.owl#Paper_Author"/>
+                        </owl:unionOf>
+                    </owl:Class>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="http://dev.nemo.inf.ufes.br:28080/ReSearchers/resources/owl/researchers.owl#Researcher"/>
+    </owl:Class>
+    
+
+
+    <!-- http://dev.nemo.inf.ufes.br:28080/ReSearchers/resources/owl/researchers.owl#BSc_Project -->
+
+    <owl:Class rdf:about="http://dev.nemo.inf.ufes.br:28080/ReSearchers/resources/owl/researchers.owl#BSc_Project">
+        <rdfs:subClassOf rdf:resource="http://dev.nemo.inf.ufes.br:28080/ReSearchers/resources/owl/researchers.owl#Conclusion_Project"/>
+    </owl:Class>
+    
+
+
+    <!-- http://dev.nemo.inf.ufes.br:28080/ReSearchers/resources/owl/researchers.owl#Co-Advisor -->
+
+    <owl:Class rdf:about="http://dev.nemo.inf.ufes.br:28080/ReSearchers/resources/owl/researchers.owl#Co-Advisor">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://dev.nemo.inf.ufes.br:28080/ReSearchers/resources/owl/researchers.owl#/co-supervises"/>
+                        <owl:someValuesFrom rdf:resource="http://dev.nemo.inf.ufes.br:28080/ReSearchers/resources/owl/researchers.owl#Co-Supervised_Conclusion_Project_Author"/>
+                    </owl:Restriction>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://dev.nemo.inf.ufes.br:28080/ReSearchers/resources/owl/researchers.owl#INV.mediation.Co-Supervision.Co-Advisor"/>
+                        <owl:someValuesFrom rdf:resource="http://dev.nemo.inf.ufes.br:28080/ReSearchers/resources/owl/researchers.owl#Co-Supervision"/>
+                    </owl:Restriction>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://dev.nemo.inf.ufes.br:28080/ReSearchers/resources/owl/researchers.owl#co-advisor_of"/>
+                        <owl:someValuesFrom rdf:resource="http://dev.nemo.inf.ufes.br:28080/ReSearchers/resources/owl/researchers.owl#Co-Supervised_Conclusion_Project"/>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="http://dev.nemo.inf.ufes.br:28080/ReSearchers/resources/owl/researchers.owl#Researcher"/>
+    </owl:Class>
+    
+
+
+    <!-- http://dev.nemo.inf.ufes.br:28080/ReSearchers/resources/owl/researchers.owl#Co-Supervised_Conclusion_Project -->
+
+    <owl:Class rdf:about="http://dev.nemo.inf.ufes.br:28080/ReSearchers/resources/owl/researchers.owl#Co-Supervised_Conclusion_Project">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://dev.nemo.inf.ufes.br:28080/ReSearchers/resources/owl/researchers.owl#INV.co-advisor_of"/>
+                        <owl:onClass rdf:resource="http://dev.nemo.inf.ufes.br:28080/ReSearchers/resources/owl/researchers.owl#Co-Advisor"/>
+                        <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+                    </owl:Restriction>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://dev.nemo.inf.ufes.br:28080/ReSearchers/resources/owl/researchers.owl#INV.mediation.Co-Supervision.Co-Supervised_Conclusion_Project"/>
+                        <owl:onClass rdf:resource="http://dev.nemo.inf.ufes.br:28080/ReSearchers/resources/owl/researchers.owl#Co-Supervision"/>
+                        <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="http://dev.nemo.inf.ufes.br:28080/ReSearchers/resources/owl/researchers.owl#Conclusion_Project"/>
+    </owl:Class>
+    
+
+
+    <!-- http://dev.nemo.inf.ufes.br:28080/ReSearchers/resources/owl/researchers.owl#Co-Supervised_Conclusion_Project_Author -->
+
+    <owl:Class rdf:about="http://dev.nemo.inf.ufes.br:28080/ReSearchers/resources/owl/researchers.owl#Co-Supervised_Conclusion_Project_Author">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://dev.nemo.inf.ufes.br:28080/ReSearchers/resources/owl/researchers.owl#INV./co-supervises"/>
+                        <owl:someValuesFrom rdf:resource="http://dev.nemo.inf.ufes.br:28080/ReSearchers/resources/owl/researchers.owl#Co-Advisor"/>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="http://dev.nemo.inf.ufes.br:28080/ReSearchers/resources/owl/researchers.owl#Conclusion_Project_Author"/>
+    </owl:Class>
+    
+
+
+    <!-- http://dev.nemo.inf.ufes.br:28080/ReSearchers/resources/owl/researchers.owl#Co-Supervision -->
+
+    <owl:Class rdf:about="http://dev.nemo.inf.ufes.br:28080/ReSearchers/resources/owl/researchers.owl#Co-Supervision">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://dev.nemo.inf.ufes.br:28080/ReSearchers/resources/owl/researchers.owl#mediation.Co-Supervision.Co-Advisor"/>
+                        <owl:onClass rdf:resource="http://dev.nemo.inf.ufes.br:28080/ReSearchers/resources/owl/researchers.owl#Co-Advisor"/>
+                        <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+                    </owl:Restriction>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://dev.nemo.inf.ufes.br:28080/ReSearchers/resources/owl/researchers.owl#mediation.Co-Supervision.Co-Supervised_Conclusion_Project"/>
+                        <owl:onClass rdf:resource="http://dev.nemo.inf.ufes.br:28080/ReSearchers/resources/owl/researchers.owl#Co-Supervised_Conclusion_Project"/>
+                        <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+        <owl:disjointWith rdf:resource="http://dev.nemo.inf.ufes.br:28080/ReSearchers/resources/owl/researchers.owl#Conclusion_Project_Authorship"/>
+        <owl:disjointWith rdf:resource="http://dev.nemo.inf.ufes.br:28080/ReSearchers/resources/owl/researchers.owl#Paper_Authorship"/>
+        <owl:disjointWith rdf:resource="http://dev.nemo.inf.ufes.br:28080/ReSearchers/resources/owl/researchers.owl#Person"/>
+        <owl:disjointWith rdf:resource="http://dev.nemo.inf.ufes.br:28080/ReSearchers/resources/owl/researchers.owl#Publication"/>
+        <owl:disjointWith rdf:resource="http://dev.nemo.inf.ufes.br:28080/ReSearchers/resources/owl/researchers.owl#Supervision"/>
+    </owl:Class>
+    
+
+
+    <!-- http://dev.nemo.inf.ufes.br:28080/ReSearchers/resources/owl/researchers.owl#Completed -->
+
+    <owl:Class rdf:about="http://dev.nemo.inf.ufes.br:28080/ReSearchers/resources/owl/researchers.owl#Completed">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://dev.nemo.inf.ufes.br:28080/ReSearchers/resources/owl/researchers.owl#Completed.conclusion_year"/>
+                        <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+                        <owl:onDataRange rdf:resource="&xsd;integer"/>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="http://dev.nemo.inf.ufes.br:28080/ReSearchers/resources/owl/researchers.owl#Conclusion_Project"/>
+        <owl:disjointWith rdf:resource="http://dev.nemo.inf.ufes.br:28080/ReSearchers/resources/owl/researchers.owl#In_Progress"/>
+    </owl:Class>
+    
+
+
+    <!-- http://dev.nemo.inf.ufes.br:28080/ReSearchers/resources/owl/researchers.owl#Conclusion_Project -->
+
+    <owl:Class rdf:about="http://dev.nemo.inf.ufes.br:28080/ReSearchers/resources/owl/researchers.owl#Conclusion_Project">
+        <owl:equivalentClass rdf:resource="&swrc;Thesis"/>
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <owl:Class>
+                        <owl:unionOf rdf:parseType="Collection">
+                            <rdf:Description rdf:about="http://dev.nemo.inf.ufes.br:28080/ReSearchers/resources/owl/researchers.owl#BSc_Project"/>
+                            <rdf:Description rdf:about="http://dev.nemo.inf.ufes.br:28080/ReSearchers/resources/owl/researchers.owl#MSc_Project"/>
+                            <rdf:Description rdf:about="http://dev.nemo.inf.ufes.br:28080/ReSearchers/resources/owl/researchers.owl#PhD_Project"/>
+                            <rdf:Description rdf:about="http://dev.nemo.inf.ufes.br:28080/ReSearchers/resources/owl/researchers.owl#Post_PhD_Project"/>
+                        </owl:unionOf>
+                    </owl:Class>
+                    <owl:Class>
+                        <owl:unionOf rdf:parseType="Collection">
+                            <rdf:Description rdf:about="http://dev.nemo.inf.ufes.br:28080/ReSearchers/resources/owl/researchers.owl#Completed"/>
+                            <rdf:Description rdf:about="http://dev.nemo.inf.ufes.br:28080/ReSearchers/resources/owl/researchers.owl#In_Progress"/>
+                        </owl:unionOf>
+                    </owl:Class>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://dev.nemo.inf.ufes.br:28080/ReSearchers/resources/owl/researchers.owl#INV.advisor_of"/>
+                        <owl:onClass rdf:resource="http://dev.nemo.inf.ufes.br:28080/ReSearchers/resources/owl/researchers.owl#Advisor"/>
+                        <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+                    </owl:Restriction>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://dev.nemo.inf.ufes.br:28080/ReSearchers/resources/owl/researchers.owl#INV.author_of.Conclusion_Project_Author.Conclusion_Project"/>
+                        <owl:onClass rdf:resource="http://dev.nemo.inf.ufes.br:28080/ReSearchers/resources/owl/researchers.owl#Conclusion_Project_Author"/>
+                        <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+                    </owl:Restriction>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://dev.nemo.inf.ufes.br:28080/ReSearchers/resources/owl/researchers.owl#INV.mediation.Conclusion_Project_Authorship.Conclusion_Project"/>
+                        <owl:onClass rdf:resource="http://dev.nemo.inf.ufes.br:28080/ReSearchers/resources/owl/researchers.owl#Conclusion_Project_Authorship"/>
+                        <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+                    </owl:Restriction>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://dev.nemo.inf.ufes.br:28080/ReSearchers/resources/owl/researchers.owl#INV.mediation.Supervision.Conclusion_Project"/>
+                        <owl:onClass rdf:resource="http://dev.nemo.inf.ufes.br:28080/ReSearchers/resources/owl/researchers.owl#Supervision"/>
+                        <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="http://dev.nemo.inf.ufes.br:28080/ReSearchers/resources/owl/researchers.owl#Publication"/>
+        <owl:disjointWith rdf:resource="http://dev.nemo.inf.ufes.br:28080/ReSearchers/resources/owl/researchers.owl#Paper"/>
+    </owl:Class>
+    
+
+
+    <!-- http://dev.nemo.inf.ufes.br:28080/ReSearchers/resources/owl/researchers.owl#Conclusion_Project_Author -->
+
+    <owl:Class rdf:about="http://dev.nemo.inf.ufes.br:28080/ReSearchers/resources/owl/researchers.owl#Conclusion_Project_Author">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://dev.nemo.inf.ufes.br:28080/ReSearchers/resources/owl/researchers.owl#INV./supervises"/>
+                        <owl:someValuesFrom rdf:resource="http://dev.nemo.inf.ufes.br:28080/ReSearchers/resources/owl/researchers.owl#Advisor"/>
+                    </owl:Restriction>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://dev.nemo.inf.ufes.br:28080/ReSearchers/resources/owl/researchers.owl#INV.mediation.Conclusion_Project_Authorship.Conclusion_Project_Author"/>
+                        <owl:someValuesFrom rdf:resource="http://dev.nemo.inf.ufes.br:28080/ReSearchers/resources/owl/researchers.owl#Conclusion_Project_Authorship"/>
+                    </owl:Restriction>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://dev.nemo.inf.ufes.br:28080/ReSearchers/resources/owl/researchers.owl#author_of.Conclusion_Project_Author.Conclusion_Project"/>
+                        <owl:someValuesFrom rdf:resource="http://dev.nemo.inf.ufes.br:28080/ReSearchers/resources/owl/researchers.owl#Conclusion_Project"/>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="http://dev.nemo.inf.ufes.br:28080/ReSearchers/resources/owl/researchers.owl#Author"/>
+        <rdfs:subClassOf rdf:resource="&swrc;Student"/>
+    </owl:Class>
+    
+
+
+    <!-- http://dev.nemo.inf.ufes.br:28080/ReSearchers/resources/owl/researchers.owl#Conclusion_Project_Authorship -->
+
+    <owl:Class rdf:about="http://dev.nemo.inf.ufes.br:28080/ReSearchers/resources/owl/researchers.owl#Conclusion_Project_Authorship">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://dev.nemo.inf.ufes.br:28080/ReSearchers/resources/owl/researchers.owl#mediation.Conclusion_Project_Authorship.Conclusion_Project"/>
+                        <owl:onClass rdf:resource="http://dev.nemo.inf.ufes.br:28080/ReSearchers/resources/owl/researchers.owl#Conclusion_Project"/>
+                        <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+                    </owl:Restriction>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://dev.nemo.inf.ufes.br:28080/ReSearchers/resources/owl/researchers.owl#mediation.Conclusion_Project_Authorship.Conclusion_Project_Author"/>
+                        <owl:onClass rdf:resource="http://dev.nemo.inf.ufes.br:28080/ReSearchers/resources/owl/researchers.owl#Conclusion_Project_Author"/>
+                        <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+        <owl:disjointWith rdf:resource="http://dev.nemo.inf.ufes.br:28080/ReSearchers/resources/owl/researchers.owl#Paper_Authorship"/>
+        <owl:disjointWith rdf:resource="http://dev.nemo.inf.ufes.br:28080/ReSearchers/resources/owl/researchers.owl#Person"/>
+        <owl:disjointWith rdf:resource="http://dev.nemo.inf.ufes.br:28080/ReSearchers/resources/owl/researchers.owl#Publication"/>
+        <owl:disjointWith rdf:resource="http://dev.nemo.inf.ufes.br:28080/ReSearchers/resources/owl/researchers.owl#Supervision"/>
+    </owl:Class>
+    
+
+
+    <!-- http://dev.nemo.inf.ufes.br:28080/ReSearchers/resources/owl/researchers.owl#In_Progress -->
+
+    <owl:Class rdf:about="http://dev.nemo.inf.ufes.br:28080/ReSearchers/resources/owl/researchers.owl#In_Progress">
+        <owl:equivalentClass rdf:resource="&swrc;Unpublished"/>
+        <rdfs:subClassOf rdf:resource="http://dev.nemo.inf.ufes.br:28080/ReSearchers/resources/owl/researchers.owl#Conclusion_Project"/>
+    </owl:Class>
+    
+
+
+    <!-- http://dev.nemo.inf.ufes.br:28080/ReSearchers/resources/owl/researchers.owl#MSc_Project -->
+
+    <owl:Class rdf:about="http://dev.nemo.inf.ufes.br:28080/ReSearchers/resources/owl/researchers.owl#MSc_Project">
+        <owl:equivalentClass rdf:resource="&swrc;MasterThesis"/>
+        <rdfs:subClassOf rdf:resource="http://dev.nemo.inf.ufes.br:28080/ReSearchers/resources/owl/researchers.owl#Conclusion_Project"/>
+    </owl:Class>
+    
+
+
+    <!-- http://dev.nemo.inf.ufes.br:28080/ReSearchers/resources/owl/researchers.owl#Paper -->
+
+    <owl:Class rdf:about="http://dev.nemo.inf.ufes.br:28080/ReSearchers/resources/owl/researchers.owl#Paper">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://dev.nemo.inf.ufes.br:28080/ReSearchers/resources/owl/researchers.owl#INV.author_of.Paper_Author.Paper"/>
+                        <owl:someValuesFrom rdf:resource="http://dev.nemo.inf.ufes.br:28080/ReSearchers/resources/owl/researchers.owl#Paper_Author"/>
+                    </owl:Restriction>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://dev.nemo.inf.ufes.br:28080/ReSearchers/resources/owl/researchers.owl#INV.mediation.Paper_Authorship.Paper"/>
+                        <owl:someValuesFrom rdf:resource="http://dev.nemo.inf.ufes.br:28080/ReSearchers/resources/owl/researchers.owl#Paper_Authorship"/>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="http://dev.nemo.inf.ufes.br:28080/ReSearchers/resources/owl/researchers.owl#Publication"/>
+    </owl:Class>
+    
+
+
+    <!-- http://dev.nemo.inf.ufes.br:28080/ReSearchers/resources/owl/researchers.owl#Paper_Author -->
+
+    <owl:Class rdf:about="http://dev.nemo.inf.ufes.br:28080/ReSearchers/resources/owl/researchers.owl#Paper_Author">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://dev.nemo.inf.ufes.br:28080/ReSearchers/resources/owl/researchers.owl#INV.mediation.Paper_Authorship.Paper_Author"/>
+                        <owl:someValuesFrom rdf:resource="http://dev.nemo.inf.ufes.br:28080/ReSearchers/resources/owl/researchers.owl#Paper_Authorship"/>
+                    </owl:Restriction>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://dev.nemo.inf.ufes.br:28080/ReSearchers/resources/owl/researchers.owl#author_of.Paper_Author.Paper"/>
+                        <owl:someValuesFrom rdf:resource="http://dev.nemo.inf.ufes.br:28080/ReSearchers/resources/owl/researchers.owl#Paper"/>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="http://dev.nemo.inf.ufes.br:28080/ReSearchers/resources/owl/researchers.owl#Author"/>
+    </owl:Class>
+    
+
+
+    <!-- http://dev.nemo.inf.ufes.br:28080/ReSearchers/resources/owl/researchers.owl#Paper_Authorship -->
+
+    <owl:Class rdf:about="http://dev.nemo.inf.ufes.br:28080/ReSearchers/resources/owl/researchers.owl#Paper_Authorship">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://dev.nemo.inf.ufes.br:28080/ReSearchers/resources/owl/researchers.owl#mediation.Paper_Authorship.Paper"/>
+                        <owl:onClass rdf:resource="http://dev.nemo.inf.ufes.br:28080/ReSearchers/resources/owl/researchers.owl#Paper"/>
+                        <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+                    </owl:Restriction>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://dev.nemo.inf.ufes.br:28080/ReSearchers/resources/owl/researchers.owl#mediation.Paper_Authorship.Paper_Author"/>
+                        <owl:onClass rdf:resource="http://dev.nemo.inf.ufes.br:28080/ReSearchers/resources/owl/researchers.owl#Paper_Author"/>
+                        <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+        <owl:disjointWith rdf:resource="http://dev.nemo.inf.ufes.br:28080/ReSearchers/resources/owl/researchers.owl#Person"/>
+        <owl:disjointWith rdf:resource="http://dev.nemo.inf.ufes.br:28080/ReSearchers/resources/owl/researchers.owl#Publication"/>
+        <owl:disjointWith rdf:resource="http://dev.nemo.inf.ufes.br:28080/ReSearchers/resources/owl/researchers.owl#Supervision"/>
+    </owl:Class>
+    
+
+
+    <!-- http://dev.nemo.inf.ufes.br:28080/ReSearchers/resources/owl/researchers.owl#Person -->
+
+    <owl:Class rdf:about="http://dev.nemo.inf.ufes.br:28080/ReSearchers/resources/owl/researchers.owl#Person">
+        <owl:equivalentClass rdf:resource="http://schema.org/Person"/>
+        <owl:equivalentClass rdf:resource="&swrc;Person"/>
+        <owl:equivalentClass rdf:resource="http://www.w3.org/2000/10/swap/pim/contact#Person"/>
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://dev.nemo.inf.ufes.br:28080/ReSearchers/resources/owl/researchers.owl#Person.complete_name"/>
+                        <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+                        <owl:onDataRange rdf:resource="&xsd;string"/>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+        <owl:disjointWith rdf:resource="http://dev.nemo.inf.ufes.br:28080/ReSearchers/resources/owl/researchers.owl#Publication"/>
+        <owl:disjointWith rdf:resource="http://dev.nemo.inf.ufes.br:28080/ReSearchers/resources/owl/researchers.owl#Supervision"/>
+    </owl:Class>
+    
+
+
+    <!-- http://dev.nemo.inf.ufes.br:28080/ReSearchers/resources/owl/researchers.owl#PhD_Project -->
+
+    <owl:Class rdf:about="http://dev.nemo.inf.ufes.br:28080/ReSearchers/resources/owl/researchers.owl#PhD_Project">
+        <owl:equivalentClass rdf:resource="&swrc;PhDThesis"/>
+        <rdfs:subClassOf rdf:resource="http://dev.nemo.inf.ufes.br:28080/ReSearchers/resources/owl/researchers.owl#Conclusion_Project"/>
+    </owl:Class>
+    
+
+
+    <!-- http://dev.nemo.inf.ufes.br:28080/ReSearchers/resources/owl/researchers.owl#Post_PhD_Project -->
+
+    <owl:Class rdf:about="http://dev.nemo.inf.ufes.br:28080/ReSearchers/resources/owl/researchers.owl#Post_PhD_Project">
+        <rdfs:subClassOf rdf:resource="http://dev.nemo.inf.ufes.br:28080/ReSearchers/resources/owl/researchers.owl#Conclusion_Project"/>
+    </owl:Class>
+    
+
+
+    <!-- http://dev.nemo.inf.ufes.br:28080/ReSearchers/resources/owl/researchers.owl#Publication -->
+
+    <owl:Class rdf:about="http://dev.nemo.inf.ufes.br:28080/ReSearchers/resources/owl/researchers.owl#Publication">
+        <owl:equivalentClass rdf:resource="&swrc;Publication"/>
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <owl:Class>
+                        <owl:unionOf rdf:parseType="Collection">
+                            <rdf:Description rdf:about="http://dev.nemo.inf.ufes.br:28080/ReSearchers/resources/owl/researchers.owl#Conclusion_Project"/>
+                            <rdf:Description rdf:about="http://dev.nemo.inf.ufes.br:28080/ReSearchers/resources/owl/researchers.owl#Paper"/>
+                        </owl:unionOf>
+                    </owl:Class>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://dev.nemo.inf.ufes.br:28080/ReSearchers/resources/owl/researchers.owl#Publication.title"/>
+                        <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+                        <owl:onDataRange rdf:resource="&xsd;string"/>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+        <owl:disjointWith rdf:resource="http://dev.nemo.inf.ufes.br:28080/ReSearchers/resources/owl/researchers.owl#Supervision"/>
+    </owl:Class>
+    
+
+
+    <!-- http://dev.nemo.inf.ufes.br:28080/ReSearchers/resources/owl/researchers.owl#Researcher -->
+
+    <owl:Class rdf:about="http://dev.nemo.inf.ufes.br:28080/ReSearchers/resources/owl/researchers.owl#Researcher">
+        <rdfs:subClassOf rdf:resource="http://dev.nemo.inf.ufes.br:28080/ReSearchers/resources/owl/researchers.owl#Person"/>
+    </owl:Class>
+    
+
+
+    <!-- http://dev.nemo.inf.ufes.br:28080/ReSearchers/resources/owl/researchers.owl#Supervision -->
+
+    <owl:Class rdf:about="http://dev.nemo.inf.ufes.br:28080/ReSearchers/resources/owl/researchers.owl#Supervision">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://dev.nemo.inf.ufes.br:28080/ReSearchers/resources/owl/researchers.owl#mediation.Supervision.Advisor"/>
+                        <owl:onClass rdf:resource="http://dev.nemo.inf.ufes.br:28080/ReSearchers/resources/owl/researchers.owl#Advisor"/>
+                        <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+                    </owl:Restriction>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://dev.nemo.inf.ufes.br:28080/ReSearchers/resources/owl/researchers.owl#mediation.Supervision.Conclusion_Project"/>
+                        <owl:onClass rdf:resource="http://dev.nemo.inf.ufes.br:28080/ReSearchers/resources/owl/researchers.owl#Conclusion_Project"/>
+                        <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+    </owl:Class>
+    
+
+
     <!-- http://schema.org/Person -->
 
-    <owl:Class rdf:about="http://schema.org/Person">
-        <owl:equivalentClass rdf:resource="&researchers;Person"/>
-    </owl:Class>
+    <owl:Class rdf:about="http://schema.org/Person"/>
     
 
 
     <!-- http://swrc.ontoware.org/ontology#MasterThesis -->
 
-    <owl:Class rdf:about="&swrc;MasterThesis">
-        <owl:equivalentClass rdf:resource="&researchers;MSc_Project"/>
-    </owl:Class>
+    <owl:Class rdf:about="&swrc;MasterThesis"/>
     
 
 
     <!-- http://swrc.ontoware.org/ontology#Person -->
 
-    <owl:Class rdf:about="&swrc;Person">
-        <owl:equivalentClass rdf:resource="&researchers;Person"/>
-    </owl:Class>
+    <owl:Class rdf:about="&swrc;Person"/>
     
 
 
     <!-- http://swrc.ontoware.org/ontology#PhDThesis -->
 
-    <owl:Class rdf:about="&swrc;PhDThesis">
-        <owl:equivalentClass rdf:resource="&researchers;PhD_Project"/>
-    </owl:Class>
+    <owl:Class rdf:about="&swrc;PhDThesis"/>
     
 
 
     <!-- http://swrc.ontoware.org/ontology#Publication -->
 
-    <owl:Class rdf:about="&swrc;Publication">
-        <owl:equivalentClass rdf:resource="&researchers;Publication"/>
-    </owl:Class>
+    <owl:Class rdf:about="&swrc;Publication"/>
     
 
 
@@ -498,476 +940,19 @@
 
     <!-- http://swrc.ontoware.org/ontology#Thesis -->
 
-    <owl:Class rdf:about="&swrc;Thesis">
-        <owl:equivalentClass rdf:resource="&researchers;Conclusion_Project"/>
-    </owl:Class>
+    <owl:Class rdf:about="&swrc;Thesis"/>
     
 
 
     <!-- http://swrc.ontoware.org/ontology#Unpublished -->
 
-    <owl:Class rdf:about="&swrc;Unpublished">
-        <owl:equivalentClass rdf:resource="&researchers;In_Progress"/>
-    </owl:Class>
+    <owl:Class rdf:about="&swrc;Unpublished"/>
     
 
 
     <!-- http://www.w3.org/2000/10/swap/pim/contact#Person -->
 
-    <owl:Class rdf:about="http://www.w3.org/2000/10/swap/pim/contact#Person">
-        <owl:equivalentClass rdf:resource="&researchers;Person"/>
-    </owl:Class>
-    
-
-
-    <!-- https://github.com/nemo-ufes/nemo-utils/researchers.owl#Advisor -->
-
-    <owl:Class rdf:about="&researchers;Advisor">
-        <owl:equivalentClass>
-            <owl:Class>
-                <owl:intersectionOf rdf:parseType="Collection">
-                    <owl:Restriction>
-                        <owl:onProperty rdf:resource="&researchers;/supervises"/>
-                        <owl:someValuesFrom rdf:resource="&researchers;Conclusion_Project_Author"/>
-                    </owl:Restriction>
-                    <owl:Restriction>
-                        <owl:onProperty rdf:resource="&researchers;INV.mediation.Supervision.Advisor"/>
-                        <owl:someValuesFrom rdf:resource="&researchers;Supervision"/>
-                    </owl:Restriction>
-                    <owl:Restriction>
-                        <owl:onProperty rdf:resource="&researchers;advisor_of"/>
-                        <owl:someValuesFrom rdf:resource="&researchers;Conclusion_Project"/>
-                    </owl:Restriction>
-                </owl:intersectionOf>
-            </owl:Class>
-        </owl:equivalentClass>
-        <rdfs:subClassOf rdf:resource="&researchers;Researcher"/>
-    </owl:Class>
-    
-
-
-    <!-- https://github.com/nemo-ufes/nemo-utils/researchers.owl#Author -->
-
-    <owl:Class rdf:about="&researchers;Author">
-        <owl:equivalentClass>
-            <owl:Class>
-                <owl:intersectionOf rdf:parseType="Collection">
-                    <owl:Class>
-                        <owl:unionOf rdf:parseType="Collection">
-                            <rdf:Description rdf:about="&researchers;Conclusion_Project_Author"/>
-                            <rdf:Description rdf:about="&researchers;Paper_Author"/>
-                        </owl:unionOf>
-                    </owl:Class>
-                </owl:intersectionOf>
-            </owl:Class>
-        </owl:equivalentClass>
-        <rdfs:subClassOf rdf:resource="&researchers;Researcher"/>
-    </owl:Class>
-    
-
-
-    <!-- https://github.com/nemo-ufes/nemo-utils/researchers.owl#BSc_Project -->
-
-    <owl:Class rdf:about="&researchers;BSc_Project">
-        <rdfs:subClassOf rdf:resource="&researchers;Conclusion_Project"/>
-    </owl:Class>
-    
-
-
-    <!-- https://github.com/nemo-ufes/nemo-utils/researchers.owl#Co-Advisor -->
-
-    <owl:Class rdf:about="&researchers;Co-Advisor">
-        <owl:equivalentClass>
-            <owl:Class>
-                <owl:intersectionOf rdf:parseType="Collection">
-                    <owl:Restriction>
-                        <owl:onProperty rdf:resource="&researchers;/co-supervises"/>
-                        <owl:someValuesFrom rdf:resource="&researchers;Co-Supervised_Conclusion_Project_Author"/>
-                    </owl:Restriction>
-                    <owl:Restriction>
-                        <owl:onProperty rdf:resource="&researchers;INV.mediation.Co-Supervision.Co-Advisor"/>
-                        <owl:someValuesFrom rdf:resource="&researchers;Co-Supervision"/>
-                    </owl:Restriction>
-                    <owl:Restriction>
-                        <owl:onProperty rdf:resource="&researchers;co-advisor_of"/>
-                        <owl:someValuesFrom rdf:resource="&researchers;Co-Supervised_Conclusion_Project"/>
-                    </owl:Restriction>
-                </owl:intersectionOf>
-            </owl:Class>
-        </owl:equivalentClass>
-        <rdfs:subClassOf rdf:resource="&researchers;Researcher"/>
-    </owl:Class>
-    
-
-
-    <!-- https://github.com/nemo-ufes/nemo-utils/researchers.owl#Co-Supervised_Conclusion_Project -->
-
-    <owl:Class rdf:about="&researchers;Co-Supervised_Conclusion_Project">
-        <owl:equivalentClass>
-            <owl:Class>
-                <owl:intersectionOf rdf:parseType="Collection">
-                    <owl:Restriction>
-                        <owl:onProperty rdf:resource="&researchers;INV.co-advisor_of"/>
-                        <owl:onClass rdf:resource="&researchers;Co-Advisor"/>
-                        <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
-                    </owl:Restriction>
-                    <owl:Restriction>
-                        <owl:onProperty rdf:resource="&researchers;INV.mediation.Co-Supervision.Co-Supervised_Conclusion_Project"/>
-                        <owl:onClass rdf:resource="&researchers;Co-Supervision"/>
-                        <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
-                    </owl:Restriction>
-                </owl:intersectionOf>
-            </owl:Class>
-        </owl:equivalentClass>
-        <rdfs:subClassOf rdf:resource="&researchers;Conclusion_Project"/>
-    </owl:Class>
-    
-
-
-    <!-- https://github.com/nemo-ufes/nemo-utils/researchers.owl#Co-Supervised_Conclusion_Project_Author -->
-
-    <owl:Class rdf:about="&researchers;Co-Supervised_Conclusion_Project_Author">
-        <owl:equivalentClass>
-            <owl:Class>
-                <owl:intersectionOf rdf:parseType="Collection">
-                    <owl:Restriction>
-                        <owl:onProperty rdf:resource="&researchers;INV./co-supervises"/>
-                        <owl:someValuesFrom rdf:resource="&researchers;Co-Advisor"/>
-                    </owl:Restriction>
-                </owl:intersectionOf>
-            </owl:Class>
-        </owl:equivalentClass>
-        <rdfs:subClassOf rdf:resource="&researchers;Conclusion_Project_Author"/>
-    </owl:Class>
-    
-
-
-    <!-- https://github.com/nemo-ufes/nemo-utils/researchers.owl#Co-Supervision -->
-
-    <owl:Class rdf:about="&researchers;Co-Supervision">
-        <owl:equivalentClass>
-            <owl:Class>
-                <owl:intersectionOf rdf:parseType="Collection">
-                    <owl:Restriction>
-                        <owl:onProperty rdf:resource="&researchers;mediation.Co-Supervision.Co-Advisor"/>
-                        <owl:onClass rdf:resource="&researchers;Co-Advisor"/>
-                        <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
-                    </owl:Restriction>
-                    <owl:Restriction>
-                        <owl:onProperty rdf:resource="&researchers;mediation.Co-Supervision.Co-Supervised_Conclusion_Project"/>
-                        <owl:onClass rdf:resource="&researchers;Co-Supervised_Conclusion_Project"/>
-                        <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
-                    </owl:Restriction>
-                </owl:intersectionOf>
-            </owl:Class>
-        </owl:equivalentClass>
-        <owl:disjointWith rdf:resource="&researchers;Conclusion_Project_Authorship"/>
-        <owl:disjointWith rdf:resource="&researchers;Paper_Authorship"/>
-        <owl:disjointWith rdf:resource="&researchers;Person"/>
-        <owl:disjointWith rdf:resource="&researchers;Publication"/>
-        <owl:disjointWith rdf:resource="&researchers;Supervision"/>
-    </owl:Class>
-    
-
-
-    <!-- https://github.com/nemo-ufes/nemo-utils/researchers.owl#Completed -->
-
-    <owl:Class rdf:about="&researchers;Completed">
-        <owl:equivalentClass>
-            <owl:Class>
-                <owl:intersectionOf rdf:parseType="Collection">
-                    <owl:Restriction>
-                        <owl:onProperty rdf:resource="&researchers;Completed.conclusion_year"/>
-                        <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
-                        <owl:onDataRange rdf:resource="&xsd;integer"/>
-                    </owl:Restriction>
-                </owl:intersectionOf>
-            </owl:Class>
-        </owl:equivalentClass>
-        <rdfs:subClassOf rdf:resource="&researchers;Conclusion_Project"/>
-        <owl:disjointWith rdf:resource="&researchers;In_Progress"/>
-    </owl:Class>
-    
-
-
-    <!-- https://github.com/nemo-ufes/nemo-utils/researchers.owl#Conclusion_Project -->
-
-    <owl:Class rdf:about="&researchers;Conclusion_Project">
-        <owl:equivalentClass>
-            <owl:Class>
-                <owl:intersectionOf rdf:parseType="Collection">
-                    <owl:Class>
-                        <owl:unionOf rdf:parseType="Collection">
-                            <rdf:Description rdf:about="&researchers;BSc_Project"/>
-                            <rdf:Description rdf:about="&researchers;MSc_Project"/>
-                            <rdf:Description rdf:about="&researchers;PhD_Project"/>
-                            <rdf:Description rdf:about="&researchers;Post_PhD_Project"/>
-                        </owl:unionOf>
-                    </owl:Class>
-                    <owl:Class>
-                        <owl:unionOf rdf:parseType="Collection">
-                            <rdf:Description rdf:about="&researchers;Completed"/>
-                            <rdf:Description rdf:about="&researchers;In_Progress"/>
-                        </owl:unionOf>
-                    </owl:Class>
-                    <owl:Restriction>
-                        <owl:onProperty rdf:resource="&researchers;INV.advisor_of"/>
-                        <owl:onClass rdf:resource="&researchers;Advisor"/>
-                        <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
-                    </owl:Restriction>
-                    <owl:Restriction>
-                        <owl:onProperty rdf:resource="&researchers;INV.author_of.Conclusion_Project_Author.Conclusion_Project"/>
-                        <owl:onClass rdf:resource="&researchers;Conclusion_Project_Author"/>
-                        <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
-                    </owl:Restriction>
-                    <owl:Restriction>
-                        <owl:onProperty rdf:resource="&researchers;INV.mediation.Conclusion_Project_Authorship.Conclusion_Project"/>
-                        <owl:onClass rdf:resource="&researchers;Conclusion_Project_Authorship"/>
-                        <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
-                    </owl:Restriction>
-                    <owl:Restriction>
-                        <owl:onProperty rdf:resource="&researchers;INV.mediation.Supervision.Conclusion_Project"/>
-                        <owl:onClass rdf:resource="&researchers;Supervision"/>
-                        <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
-                    </owl:Restriction>
-                </owl:intersectionOf>
-            </owl:Class>
-        </owl:equivalentClass>
-        <rdfs:subClassOf rdf:resource="&researchers;Publication"/>
-        <owl:disjointWith rdf:resource="&researchers;Paper"/>
-    </owl:Class>
-    
-
-
-    <!-- https://github.com/nemo-ufes/nemo-utils/researchers.owl#Conclusion_Project_Author -->
-
-    <owl:Class rdf:about="&researchers;Conclusion_Project_Author">
-        <owl:equivalentClass>
-            <owl:Class>
-                <owl:intersectionOf rdf:parseType="Collection">
-                    <owl:Restriction>
-                        <owl:onProperty rdf:resource="&researchers;INV./supervises"/>
-                        <owl:someValuesFrom rdf:resource="&researchers;Advisor"/>
-                    </owl:Restriction>
-                    <owl:Restriction>
-                        <owl:onProperty rdf:resource="&researchers;INV.mediation.Conclusion_Project_Authorship.Conclusion_Project_Author"/>
-                        <owl:someValuesFrom rdf:resource="&researchers;Conclusion_Project_Authorship"/>
-                    </owl:Restriction>
-                    <owl:Restriction>
-                        <owl:onProperty rdf:resource="&researchers;author_of.Conclusion_Project_Author.Conclusion_Project"/>
-                        <owl:someValuesFrom rdf:resource="&researchers;Conclusion_Project"/>
-                    </owl:Restriction>
-                </owl:intersectionOf>
-            </owl:Class>
-        </owl:equivalentClass>
-        <rdfs:subClassOf rdf:resource="&swrc;Student"/>
-        <rdfs:subClassOf rdf:resource="&researchers;Author"/>
-    </owl:Class>
-    
-
-
-    <!-- https://github.com/nemo-ufes/nemo-utils/researchers.owl#Conclusion_Project_Authorship -->
-
-    <owl:Class rdf:about="&researchers;Conclusion_Project_Authorship">
-        <owl:equivalentClass>
-            <owl:Class>
-                <owl:intersectionOf rdf:parseType="Collection">
-                    <owl:Restriction>
-                        <owl:onProperty rdf:resource="&researchers;mediation.Conclusion_Project_Authorship.Conclusion_Project"/>
-                        <owl:onClass rdf:resource="&researchers;Conclusion_Project"/>
-                        <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
-                    </owl:Restriction>
-                    <owl:Restriction>
-                        <owl:onProperty rdf:resource="&researchers;mediation.Conclusion_Project_Authorship.Conclusion_Project_Author"/>
-                        <owl:onClass rdf:resource="&researchers;Conclusion_Project_Author"/>
-                        <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
-                    </owl:Restriction>
-                </owl:intersectionOf>
-            </owl:Class>
-        </owl:equivalentClass>
-        <owl:disjointWith rdf:resource="&researchers;Paper_Authorship"/>
-        <owl:disjointWith rdf:resource="&researchers;Person"/>
-        <owl:disjointWith rdf:resource="&researchers;Publication"/>
-        <owl:disjointWith rdf:resource="&researchers;Supervision"/>
-    </owl:Class>
-    
-
-
-    <!-- https://github.com/nemo-ufes/nemo-utils/researchers.owl#In_Progress -->
-
-    <owl:Class rdf:about="&researchers;In_Progress">
-        <rdfs:subClassOf rdf:resource="&researchers;Conclusion_Project"/>
-    </owl:Class>
-    
-
-
-    <!-- https://github.com/nemo-ufes/nemo-utils/researchers.owl#MSc_Project -->
-
-    <owl:Class rdf:about="&researchers;MSc_Project">
-        <rdfs:subClassOf rdf:resource="&researchers;Conclusion_Project"/>
-    </owl:Class>
-    
-
-
-    <!-- https://github.com/nemo-ufes/nemo-utils/researchers.owl#Paper -->
-
-    <owl:Class rdf:about="&researchers;Paper">
-        <owl:equivalentClass>
-            <owl:Class>
-                <owl:intersectionOf rdf:parseType="Collection">
-                    <owl:Restriction>
-                        <owl:onProperty rdf:resource="&researchers;INV.author_of.Paper_Author.Paper"/>
-                        <owl:someValuesFrom rdf:resource="&researchers;Paper_Author"/>
-                    </owl:Restriction>
-                    <owl:Restriction>
-                        <owl:onProperty rdf:resource="&researchers;INV.mediation.Paper_Authorship.Paper"/>
-                        <owl:someValuesFrom rdf:resource="&researchers;Paper_Authorship"/>
-                    </owl:Restriction>
-                </owl:intersectionOf>
-            </owl:Class>
-        </owl:equivalentClass>
-        <rdfs:subClassOf rdf:resource="&researchers;Publication"/>
-    </owl:Class>
-    
-
-
-    <!-- https://github.com/nemo-ufes/nemo-utils/researchers.owl#Paper_Author -->
-
-    <owl:Class rdf:about="&researchers;Paper_Author">
-        <owl:equivalentClass>
-            <owl:Class>
-                <owl:intersectionOf rdf:parseType="Collection">
-                    <owl:Restriction>
-                        <owl:onProperty rdf:resource="&researchers;INV.mediation.Paper_Authorship.Paper_Author"/>
-                        <owl:someValuesFrom rdf:resource="&researchers;Paper_Authorship"/>
-                    </owl:Restriction>
-                    <owl:Restriction>
-                        <owl:onProperty rdf:resource="&researchers;author_of.Paper_Author.Paper"/>
-                        <owl:someValuesFrom rdf:resource="&researchers;Paper"/>
-                    </owl:Restriction>
-                </owl:intersectionOf>
-            </owl:Class>
-        </owl:equivalentClass>
-        <rdfs:subClassOf rdf:resource="&researchers;Author"/>
-    </owl:Class>
-    
-
-
-    <!-- https://github.com/nemo-ufes/nemo-utils/researchers.owl#Paper_Authorship -->
-
-    <owl:Class rdf:about="&researchers;Paper_Authorship">
-        <owl:equivalentClass>
-            <owl:Class>
-                <owl:intersectionOf rdf:parseType="Collection">
-                    <owl:Restriction>
-                        <owl:onProperty rdf:resource="&researchers;mediation.Paper_Authorship.Paper"/>
-                        <owl:onClass rdf:resource="&researchers;Paper"/>
-                        <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
-                    </owl:Restriction>
-                    <owl:Restriction>
-                        <owl:onProperty rdf:resource="&researchers;mediation.Paper_Authorship.Paper_Author"/>
-                        <owl:onClass rdf:resource="&researchers;Paper_Author"/>
-                        <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
-                    </owl:Restriction>
-                </owl:intersectionOf>
-            </owl:Class>
-        </owl:equivalentClass>
-        <owl:disjointWith rdf:resource="&researchers;Person"/>
-        <owl:disjointWith rdf:resource="&researchers;Publication"/>
-        <owl:disjointWith rdf:resource="&researchers;Supervision"/>
-    </owl:Class>
-    
-
-
-    <!-- https://github.com/nemo-ufes/nemo-utils/researchers.owl#Person -->
-
-    <owl:Class rdf:about="&researchers;Person">
-        <owl:equivalentClass>
-            <owl:Class>
-                <owl:intersectionOf rdf:parseType="Collection">
-                    <owl:Restriction>
-                        <owl:onProperty rdf:resource="&researchers;Person.complete_name"/>
-                        <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
-                        <owl:onDataRange rdf:resource="&xsd;string"/>
-                    </owl:Restriction>
-                </owl:intersectionOf>
-            </owl:Class>
-        </owl:equivalentClass>
-        <owl:disjointWith rdf:resource="&researchers;Publication"/>
-        <owl:disjointWith rdf:resource="&researchers;Supervision"/>
-    </owl:Class>
-    
-
-
-    <!-- https://github.com/nemo-ufes/nemo-utils/researchers.owl#PhD_Project -->
-
-    <owl:Class rdf:about="&researchers;PhD_Project">
-        <rdfs:subClassOf rdf:resource="&researchers;Conclusion_Project"/>
-    </owl:Class>
-    
-
-
-    <!-- https://github.com/nemo-ufes/nemo-utils/researchers.owl#Post_PhD_Project -->
-
-    <owl:Class rdf:about="&researchers;Post_PhD_Project">
-        <rdfs:subClassOf rdf:resource="&researchers;Conclusion_Project"/>
-    </owl:Class>
-    
-
-
-    <!-- https://github.com/nemo-ufes/nemo-utils/researchers.owl#Publication -->
-
-    <owl:Class rdf:about="&researchers;Publication">
-        <owl:equivalentClass>
-            <owl:Class>
-                <owl:intersectionOf rdf:parseType="Collection">
-                    <owl:Class>
-                        <owl:unionOf rdf:parseType="Collection">
-                            <rdf:Description rdf:about="&researchers;Conclusion_Project"/>
-                            <rdf:Description rdf:about="&researchers;Paper"/>
-                        </owl:unionOf>
-                    </owl:Class>
-                    <owl:Restriction>
-                        <owl:onProperty rdf:resource="&researchers;Publication.title"/>
-                        <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
-                        <owl:onDataRange rdf:resource="&xsd;string"/>
-                    </owl:Restriction>
-                </owl:intersectionOf>
-            </owl:Class>
-        </owl:equivalentClass>
-        <owl:disjointWith rdf:resource="&researchers;Supervision"/>
-    </owl:Class>
-    
-
-
-    <!-- https://github.com/nemo-ufes/nemo-utils/researchers.owl#Researcher -->
-
-    <owl:Class rdf:about="&researchers;Researcher">
-        <rdfs:subClassOf rdf:resource="&researchers;Person"/>
-    </owl:Class>
-    
-
-
-    <!-- https://github.com/nemo-ufes/nemo-utils/researchers.owl#Supervision -->
-
-    <owl:Class rdf:about="&researchers;Supervision">
-        <owl:equivalentClass>
-            <owl:Class>
-                <owl:intersectionOf rdf:parseType="Collection">
-                    <owl:Restriction>
-                        <owl:onProperty rdf:resource="&researchers;mediation.Supervision.Advisor"/>
-                        <owl:onClass rdf:resource="&researchers;Advisor"/>
-                        <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
-                    </owl:Restriction>
-                    <owl:Restriction>
-                        <owl:onProperty rdf:resource="&researchers;mediation.Supervision.Conclusion_Project"/>
-                        <owl:onClass rdf:resource="&researchers;Conclusion_Project"/>
-                        <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
-                    </owl:Restriction>
-                </owl:intersectionOf>
-            </owl:Class>
-        </owl:equivalentClass>
-    </owl:Class>
+    <owl:Class rdf:about="http://www.w3.org/2000/10/swap/pim/contact#Person"/>
     
 
 
@@ -982,10 +967,10 @@
     <rdf:Description>
         <rdf:type rdf:resource="&owl;AllDisjointClasses"/>
         <owl:members rdf:parseType="Collection">
-            <rdf:Description rdf:about="&researchers;BSc_Project"/>
-            <rdf:Description rdf:about="&researchers;MSc_Project"/>
-            <rdf:Description rdf:about="&researchers;PhD_Project"/>
-            <rdf:Description rdf:about="&researchers;Post_PhD_Project"/>
+            <rdf:Description rdf:about="http://dev.nemo.inf.ufes.br:28080/ReSearchers/resources/owl/researchers.owl#BSc_Project"/>
+            <rdf:Description rdf:about="http://dev.nemo.inf.ufes.br:28080/ReSearchers/resources/owl/researchers.owl#MSc_Project"/>
+            <rdf:Description rdf:about="http://dev.nemo.inf.ufes.br:28080/ReSearchers/resources/owl/researchers.owl#PhD_Project"/>
+            <rdf:Description rdf:about="http://dev.nemo.inf.ufes.br:28080/ReSearchers/resources/owl/researchers.owl#Post_PhD_Project"/>
         </owl:members>
     </rdf:Description>
     
@@ -1025,6 +1010,64 @@
         <swrl:body>
             <rdf:Description>
                 <rdf:type rdf:resource="&swrl;AtomList"/>
+                <rdf:first>
+                    <rdf:Description>
+                        <rdf:type rdf:resource="&swrl;IndividualPropertyAtom"/>
+                        <swrl:propertyPredicate rdf:resource="http://dev.nemo.inf.ufes.br:28080/ReSearchers/resources/owl/researchers.owl#author_of"/>
+                        <swrl:argument1 rdf:resource="urn:swrl#author"/>
+                        <swrl:argument2 rdf:resource="urn:swrl#project"/>
+                    </rdf:Description>
+                </rdf:first>
+                <rdf:rest>
+                    <rdf:Description>
+                        <rdf:type rdf:resource="&swrl;AtomList"/>
+                        <rdf:rest rdf:resource="&rdf;nil"/>
+                        <rdf:first>
+                            <rdf:Description>
+                                <rdf:type rdf:resource="&swrl;IndividualPropertyAtom"/>
+                                <swrl:propertyPredicate rdf:resource="http://dev.nemo.inf.ufes.br:28080/ReSearchers/resources/owl/researchers.owl#co-advisor_of"/>
+                                <swrl:argument1 rdf:resource="urn:swrl#coadvisor"/>
+                                <swrl:argument2 rdf:resource="urn:swrl#project"/>
+                            </rdf:Description>
+                        </rdf:first>
+                    </rdf:Description>
+                </rdf:rest>
+            </rdf:Description>
+        </swrl:body>
+        <swrl:head>
+            <rdf:Description>
+                <rdf:type rdf:resource="&swrl;AtomList"/>
+                <rdf:rest rdf:resource="&rdf;nil"/>
+                <rdf:first>
+                    <rdf:Description>
+                        <rdf:type rdf:resource="&swrl;IndividualPropertyAtom"/>
+                        <swrl:propertyPredicate rdf:resource="http://dev.nemo.inf.ufes.br:28080/ReSearchers/resources/owl/researchers.owl#/co-supervises"/>
+                        <swrl:argument2 rdf:resource="urn:swrl#author"/>
+                        <swrl:argument1 rdf:resource="urn:swrl#coadvisor"/>
+                    </rdf:Description>
+                </rdf:first>
+            </rdf:Description>
+        </swrl:head>
+    </rdf:Description>
+    <rdf:Description>
+        <rdf:type rdf:resource="&swrl;Imp"/>
+        <swrl:head>
+            <rdf:Description>
+                <rdf:type rdf:resource="&swrl;AtomList"/>
+                <rdf:rest rdf:resource="&rdf;nil"/>
+                <rdf:first>
+                    <rdf:Description>
+                        <rdf:type rdf:resource="&swrl;IndividualPropertyAtom"/>
+                        <swrl:propertyPredicate rdf:resource="http://dev.nemo.inf.ufes.br:28080/ReSearchers/resources/owl/researchers.owl#/supervises"/>
+                        <swrl:argument1 rdf:resource="urn:swrl#Advisor"/>
+                        <swrl:argument2 rdf:resource="urn:swrl#Advisor.advisee"/>
+                    </rdf:Description>
+                </rdf:first>
+            </rdf:Description>
+        </swrl:head>
+        <swrl:body>
+            <rdf:Description>
+                <rdf:type rdf:resource="&swrl;AtomList"/>
                 <rdf:rest>
                     <rdf:Description>
                         <rdf:type rdf:resource="&swrl;AtomList"/>
@@ -1044,7 +1087,7 @@
                         <rdf:first>
                             <rdf:Description>
                                 <rdf:type rdf:resource="&swrl;IndividualPropertyAtom"/>
-                                <swrl:propertyPredicate rdf:resource="&researchers;author_of"/>
+                                <swrl:propertyPredicate rdf:resource="http://dev.nemo.inf.ufes.br:28080/ReSearchers/resources/owl/researchers.owl#author_of"/>
                                 <swrl:argument2 rdf:resource="urn:swrl#Advisor.conclusionProject"/>
                                 <swrl:argument1 rdf:resource="urn:swrl#Advisor.conclusionProject.author"/>
                             </rdf:Description>
@@ -1054,67 +1097,9 @@
                 <rdf:first>
                     <rdf:Description>
                         <rdf:type rdf:resource="&swrl;IndividualPropertyAtom"/>
-                        <swrl:propertyPredicate rdf:resource="&researchers;advisor_of"/>
+                        <swrl:propertyPredicate rdf:resource="http://dev.nemo.inf.ufes.br:28080/ReSearchers/resources/owl/researchers.owl#advisor_of"/>
                         <swrl:argument1 rdf:resource="urn:swrl#Advisor"/>
                         <swrl:argument2 rdf:resource="urn:swrl#Advisor.conclusionProject"/>
-                    </rdf:Description>
-                </rdf:first>
-            </rdf:Description>
-        </swrl:body>
-        <swrl:head>
-            <rdf:Description>
-                <rdf:type rdf:resource="&swrl;AtomList"/>
-                <rdf:rest rdf:resource="&rdf;nil"/>
-                <rdf:first>
-                    <rdf:Description>
-                        <rdf:type rdf:resource="&swrl;IndividualPropertyAtom"/>
-                        <swrl:propertyPredicate rdf:resource="&researchers;/supervises"/>
-                        <swrl:argument1 rdf:resource="urn:swrl#Advisor"/>
-                        <swrl:argument2 rdf:resource="urn:swrl#Advisor.advisee"/>
-                    </rdf:Description>
-                </rdf:first>
-            </rdf:Description>
-        </swrl:head>
-    </rdf:Description>
-    <rdf:Description>
-        <rdf:type rdf:resource="&swrl;Imp"/>
-        <swrl:head>
-            <rdf:Description>
-                <rdf:type rdf:resource="&swrl;AtomList"/>
-                <rdf:rest rdf:resource="&rdf;nil"/>
-                <rdf:first>
-                    <rdf:Description>
-                        <rdf:type rdf:resource="&swrl;IndividualPropertyAtom"/>
-                        <swrl:propertyPredicate rdf:resource="&researchers;/co-supervises"/>
-                        <swrl:argument2 rdf:resource="urn:swrl#author"/>
-                        <swrl:argument1 rdf:resource="urn:swrl#coadvisor"/>
-                    </rdf:Description>
-                </rdf:first>
-            </rdf:Description>
-        </swrl:head>
-        <swrl:body>
-            <rdf:Description>
-                <rdf:type rdf:resource="&swrl;AtomList"/>
-                <rdf:rest>
-                    <rdf:Description>
-                        <rdf:type rdf:resource="&swrl;AtomList"/>
-                        <rdf:rest rdf:resource="&rdf;nil"/>
-                        <rdf:first>
-                            <rdf:Description>
-                                <rdf:type rdf:resource="&swrl;IndividualPropertyAtom"/>
-                                <swrl:propertyPredicate rdf:resource="&researchers;co-advisor_of"/>
-                                <swrl:argument1 rdf:resource="urn:swrl#coadvisor"/>
-                                <swrl:argument2 rdf:resource="urn:swrl#project"/>
-                            </rdf:Description>
-                        </rdf:first>
-                    </rdf:Description>
-                </rdf:rest>
-                <rdf:first>
-                    <rdf:Description>
-                        <rdf:type rdf:resource="&swrl;IndividualPropertyAtom"/>
-                        <swrl:propertyPredicate rdf:resource="&researchers;author_of"/>
-                        <swrl:argument1 rdf:resource="urn:swrl#author"/>
-                        <swrl:argument2 rdf:resource="urn:swrl#project"/>
                     </rdf:Description>
                 </rdf:first>
             </rdf:Description>

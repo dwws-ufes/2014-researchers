@@ -54,6 +54,12 @@ public class ManageConclusionProjectsController extends CrudController<Conclusio
 		this.isAdvisor = isAdvisor;
 	}
 	
+	@Override
+	public String list() {
+		// TODO Auto-generated method stub
+		return super.list();
+	}
+	
 	public String list(Researcher selectedAdvisor) throws OWLOntologyCreationException, OWLOntologyStorageException, IOException {
 		this.selectedAdvisor = selectedAdvisor;
 		

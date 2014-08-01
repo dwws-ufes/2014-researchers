@@ -19,7 +19,7 @@
 					<h:panelGroup rendered="#{manageResearchersController.readOnly}">
 						<p:commandButton action="#{manageResearchersController.list}" value="#{msgs['crud.button.back']}" immediate="true" icon="buttonBack" />
 						<p:hotkey bind="#{msgs['crud.hotkey.backToList']}" action="#{manageResearchersController.list}" immediate="true" />
-						<p:button href="../resources/owl/#{manageResearchersController.selectedEntity.completeName}.zip" value="Save as OWL" target="_blank" icon="buttonOwl" rendered="#{not empty manageResearchersController.selectedEntity.groupedPublicationsByYear}"/>
+						<p:button href="../resources/owl/#{manageResearchersController.selectedEntity.completeName}.owl" value="Save as OWL" target="_blank" icon="buttonOwl" rendered="#{not empty manageResearchersController.selectedEntity.groupedPublicationsByYear}"/>
 					</h:panelGroup>
 				</ui:decorate>
 				<!-- The list of entities. -->

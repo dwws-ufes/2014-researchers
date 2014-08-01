@@ -106,7 +106,7 @@
 					<p:hotkey bind="#{msgs['crud.hotkey.retrieve']}" action="#{manageConclusionProjectsController.retrieve}" rendered="#{manageConclusionProjectsController.selectedEntity != null}" />
 					<p:hotkey bind="#{msgs['crud.hotkey.update']}" action="#{manageConclusionProjectsController.update}" rendered="#{manageConclusionProjectsController.selectedEntity != null}" />
 					<p:hotkey bind="#{msgs['crud.hotkey.delete']}" action="#{manageConclusionProjectsController.trash}" rendered="#{manageConclusionProjectsController.selectedEntity != null}" process="@this" update=":trashForm" />
-					<p:button href="../resources/owl/#{manageConclusionProjectsController.selectedAdvisor.completeName}.zip" value="Save Supervisions as OWL" target="_blank" icon="buttonOwl" rendered="#{not empty manageConclusionProjectsController.lazyEntities}"/>
+					<p:button href="../resources/owl/#{manageConclusionProjectsController.selectedAdvisor.completeName}.owl" value="Save Supervisions as OWL" target="_blank" icon="buttonOwl" rendered="#{not empty manageConclusionProjectsController.lazyEntities}"/>
 					<p:commandButton action="#{manageResearchersController.list}" value="#{msgs['crud.button.back']} to Researchers" immediate="true" icon="buttonBack" />
 					<p:hotkey bind="#{msgs['crud.hotkey.backToList']}" action="#{manageConclusionProjectsController.list}" immediate="true" />
 					
